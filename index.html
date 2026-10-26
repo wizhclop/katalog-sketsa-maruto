@@ -502,13 +502,63 @@
         </div>
 
         <div class="stats-tag">
-            Total Sketsa Terarsip: <strong>1 Karya Sketsa</strong>
+            Total Sketsa Terarsip: <strong>2 Karya Sketsa</strong>
         </div>
     </header>
 
     <main class="container">
         <div class="gallery-grid" id="galleryGrid">
             
+        <div class="art-card" id="card-SKT-002" data-search="skt-002 studi garis &amp; bentuk tinta di atas kertas 2026 art, sketch, drawing, indonesia, darkart, contemporaryart, marutoseptriono">
+            <div class="img-container" onclick="openModal('SKT-002')">
+                <img src="images/SKT-002.jpg" 
+                     data-filename="SKT-002.jpg"
+                     data-artid="SKT-002"
+                     data-try="0"
+                     alt="Studi Garis &amp; Bentuk" 
+                     loading="lazy" 
+                     onerror="handleImageFallback(this)"/>
+                <div class="art-badge-row">
+                    <span class="badge badge-id">SKT-002</span>
+                    <span class="badge badge-year">2026</span>
+                </div>
+            </div>
+
+            <div class="card-info">
+                <h3 class="art-title" onclick="openModal('SKT-002')">Studi Garis &amp; Bentuk</h3>
+                <p class="art-spec">29,7 cm x 42 cm &#8226; Tinta di atas kertas</p>
+
+                <div class="commercial-box">
+                    <div class="price-col">
+                        <span class="price-label">Karya Original</span>
+                        <span class="price-val">$ 100</span>
+                    </div>
+                    <div class="price-col">
+                        <span class="price-label">Pengiriman</span>
+                        <span class="shipping-badge">Bebas Ongkir</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="https://instagram.com/maruto.septriono" target="_blank" class="btn btn-dm">
+                        ✉ DM
+                    </a>
+                    <a href="mailto:kirimdoa@gmail.com?subject=Beli Sketsa Original SKT-002 - Studi Garis &amp; Bentuk" class="btn btn-email">
+                        ✉ Beli via Email
+                    </a>
+                </div>
+
+                <div class="card-statement" onclick="openModal('SKT-002')">
+                    &quot;Refleksi mendalam antara ruang hening dan dinamika batin seniman.&quot;
+                </div>
+
+                <div class="card-footer-row">
+                    <span class="card-footer-link" onclick="openModal('SKT-002')">&#8226; Detail &#8250;</span>
+                    <button class="btn-copy-card" onclick="copyDirectLink('SKT-002', event)" title="Salin Link">🔗 Tautan</button>
+                </div>
+            </div>
+        </div>
+        
         <div class="art-card" id="card-SKT-001" data-search="skt-001 studi garis &amp; bentuk tinta di atas kertas 2026 art, sketch, drawing, indonesia, darkart, contemporaryart, marutoseptriono">
             <div class="img-container" onclick="openModal('SKT-001')">
                 <img src="images/SKT-001.jpg" 
@@ -616,7 +666,7 @@
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
 
     <script>
-        const catalogData = [{"ID": "SKT-001", "Judul": "Studi Garis & Bentuk", "Tahun": "2026", "Ukuran": "29,7 cm x 42 cm", "Media": "Tinta di atas kertas", "Nama_File": "SKT-001 - Studi Garis  Bentuk.jpg", "web_image": "SKT-001.jpg", "artist_statement_id": "Refleksi mendalam antara ruang hening dan dinamika batin seniman.", "deskripsi_kuratorial": "Eksplorasi teknik arsir berkarakter gotik surealis dengan kekuatan garis yang dominan.", "tags": "art, sketch, drawing, indonesia, darkart, contemporaryart, marutoseptriono", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "status_karya": "Tersedia (Karya Original)"}];
+        const catalogData = [{"ID": "SKT-001", "Judul": "Studi Garis & Bentuk", "Tahun": "2026", "Ukuran": "29,7 cm x 42 cm", "Media": "Tinta di atas kertas", "Nama_File": "SKT-001 - Studi Garis  Bentuk.jpg", "web_image": "SKT-001.jpg", "artist_statement_id": "Refleksi mendalam antara ruang hening dan dinamika batin seniman.", "deskripsi_kuratorial": "Eksplorasi teknik arsir berkarakter gotik surealis dengan kekuatan garis yang dominan.", "tags": "art, sketch, drawing, indonesia, darkart, contemporaryart, marutoseptriono", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "status_karya": "Tersedia (Karya Original)"}, {"ID": "SKT-002", "Judul": "Studi Garis & Bentuk", "Tahun": "2026", "Ukuran": "29,7 cm x 42 cm", "Media": "Tinta di atas kertas", "Nama_File": "SKT-002 - Studi Garis  Bentuk.jpg", "web_image": "SKT-002.jpg", "artist_statement_id": "Refleksi mendalam antara ruang hening dan dinamika batin seniman.", "deskripsi_kuratorial": "Eksplorasi teknik arsir berkarakter gotik surealis dengan kekuatan garis yang dominan.", "tags": "art, sketch, drawing, indonesia, darkart, contemporaryart, marutoseptriono", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "status_karya": "Tersedia (Karya Original)"}];
         let currentModalArtId = '';
 
         function googleTranslateElementInit() {
