@@ -1,881 +1,140 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Katalog Sketsa Maruto Septriono | Sketch Archive</title>
-    <link href="[https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap](https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap)" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Katalog Sketsa Maruto Septriono</title>
     <style>
-        :root {
-            --bg-color: #0b0c10;
-            --surface-color: #14161d;
-            --card-color: #1a1c24;
-            --card-inner: #111318;
-            --accent-gold: #c5a059;
-            --text-main: #f0f0f5;
-            --text-muted: #9598a6;
-            --border-color: #262938;
-            --price-green: #38bdf8;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0b0f17; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 25px 12px; }
+        .header { text-align: center; margin-bottom: 25px; }
+        .header h1 { font-size: 1.8rem; color: #58a6ff; margin-bottom: 6px; }
+        .header p { color: #8b949e; font-size: 0.9rem; }
+        .counter { display: inline-block; margin-top: 10px; background: rgba(56, 139, 253, 0.15); border: 1px solid rgba(56, 139, 253, 0.3); color: #58a6ff; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1300px; margin: 0 auto; width: 100%; }
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; width: 100%; }
+        .img-container { position: relative; width: 100%; aspect-ratio: 4/5; background: #010409; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .badge { position: absolute; top: 10px; padding: 3px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; }
+        .badge-id { left: 10px; background: #1f6feb; color: #fff; }
+        .badge-year { left: 65px; background: rgba(255,255,255,0.15); color: #fff; }
+        .card-content { padding: 14px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-title { font-size: 1rem; margin-bottom: 4px; color: #f0f6fc; }
+        .card-meta { font-size: 0.75rem; color: #8b949e; margin-bottom: 10px; }
+        .pricing-box { display: flex; justify-content: space-between; background: rgba(0,0,0,0.25); border: 1px solid #30363d; padding: 8px 10px; border-radius: 6px; margin-bottom: 10px; }
+        .price-col .label { display: block; font-size: 0.65rem; color: #8b949e; }
+        .price-col .val { font-size: 0.95rem; font-weight: bold; color: #58a6ff; }
+        .price-col .val.free { color: #3fb950; font-size: 0.8rem; }
+        .contact-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+        .btn { text-align: center; padding: 7px; border-radius: 6px; text-decoration: none; font-size: 0.75rem; font-weight: 600; color: #fff; }
+        .btn-dm { background: #e1306c; }
+        .btn-email { background: #238636; }
+        .statement { font-size: 0.75rem; font-style: italic; color: #c9d1d9; line-height: 1.35; margin-bottom: 10px; }
+        .detail-box summary { font-size: 0.75rem; color: #58a6ff; cursor: pointer; padding: 4px 0; }
+        .curatorial-text { font-size: 0.72rem; color: #8b949e; line-height: 1.4; margin-top: 6px; background: #0d1117; padding: 8px; border-radius: 6px; }
+        footer { text-align: center; margin-top: 40px; font-size: 0.75rem; color: #484f58; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.4;
-            top: 0px !important;
-            position: static !important;
-        }
-
-        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
-        .goog-te-gadget { display: none !important; }
-        #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
-        .goog-text-highlight { background: none !important; box-shadow: none !important; }
-
-        .top-nav {
-            display: flex;
-            justify-content: flex-end;
-            padding: 12px 20px;
-            background: #08080b;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .lang-switch button {
-            background: #1b1d26;
-            color: var(--text-muted);
-            border: 1px solid var(--border-color);
-            padding: 5px 12px;
-            font-size: 0.78rem;
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: inherit;
-            transition: all 0.2s;
-        }
-
-        .lang-switch button.active {
-            background: #0284c7;
-            color: #fff;
-            border-color: #0284c7;
-            font-weight: 700;
-        }
-
-        header {
-            text-align: center;
-            padding: 35px 15px 25px;
-            background: radial-gradient(circle at center, #1e1b29 0%, var(--bg-color) 75%);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            letter-spacing: 1.5px;
-            color: #38bdf8;
-            margin-bottom: 6px;
-        }
-
-        header p.subtitle {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            margin-bottom: 18px;
-        }
-
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .search-container input {
-            width: 100%;
-            background: #101217;
-            border: 1px solid #2f3447;
-            border-radius: 8px;
-            padding: 10px 16px;
-            color: #fff;
-            font-size: 0.9rem;
-            font-family: inherit;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        .search-container input:focus {
-            border-color: #38bdf8;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
-        }
-
-        .stats-tag {
-            display: inline-block;
-            margin-top: 12px;
-            font-size: 0.8rem;
-            color: var(--accent-gold);
-            background: rgba(197, 160, 89, 0.1);
-            padding: 3px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(197, 160, 89, 0.25);
-        }
-
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 30px 15px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .art-card {
-            background: var(--card-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.25s, border-color 0.25s;
-        }
-
-        .art-card:hover {
-            border-color: #38bdf8;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        .img-container {
-            position: relative;
-            background: #000;
-            width: 100%;
-            height: 280px;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .art-card:hover .img-container img {
-            transform: scale(1.04);
-        }
-
-        .art-badge-row {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            padding: 2px 6px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            border-radius: 3px;
-            backdrop-filter: blur(4px);
-        }
-
-        .badge-id { background: #0284c7; color: #fff; }
-        .badge-year { background: #0369a1; color: #e0f2fe; }
-
-        .card-info {
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            background: var(--card-inner);
-        }
-
-        .art-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.05rem;
-            color: #fff;
-            margin-bottom: 3px;
-            cursor: pointer;
-            line-height: 1.25;
-        }
-
-        .art-title:hover { color: #38bdf8; }
-
-        .art-spec {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .commercial-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: #181b24;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            padding: 8px;
-            margin-bottom: 10px;
-            gap: 6px;
-            align-items: center;
-            text-align: center;
-        }
-
-        .price-col { display: flex; flex-direction: column; justify-content: center; }
-        .price-label { font-size: 0.65rem; color: var(--text-muted); }
-        .price-val { font-size: 1.05rem; font-weight: 700; color: #38bdf8; }
-
-        .shipping-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #10b981;
-            background: rgba(16, 185, 129, 0.12);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 4px;
-            padding: 2px 4px;
-            margin-top: 2px;
-        }
-
-        .action-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 6px;
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            text-align: center;
-            padding: 6px 4px;
-            border-radius: 4px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-
-        .btn:hover { opacity: 0.88; }
-        .btn-dm { background: linear-gradient(135deg, #e1306c, #fd1d1d); color: #fff; }
-        .btn-email { background: #272a38; color: #e2e8f0; border: 1px solid #3e445b; }
-
-        .card-statement {
-            font-size: 0.75rem;
-            color: #b3b7c8;
-            font-style: italic;
-            margin-bottom: 10px;
-            cursor: pointer;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-height: 1.35;
-        }
-
-        .card-footer-row {
-            margin-top: auto;
-            padding-top: 8px;
-            border-top: 1px solid #1f2330;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .card-footer-link { font-size: 0.72rem; color: #38bdf8; cursor: pointer; }
-
-        .btn-copy-card {
-            background: #1e2230;
-            color: #cbd5e1;
-            border: 1px solid #334155;
-            padding: 2px 6px;
-            font-size: 0.68rem;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-copy-card:hover { background: #0284c7; color: #fff; }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(5, 6, 9, 0.94);
-            backdrop-filter: blur(8px);
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-content {
-            background: var(--surface-color);
-            border: 1px solid var(--accent-gold);
-            border-radius: 10px;
-            max-width: 1050px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 12px;
-            right: 18px;
-            color: var(--text-muted);
-            font-size: 1.8rem;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .modal-close:hover { color: #fff; }
-
-        .modal-img-wrap {
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-img-wrap img {
-            max-width: 100%;
-            max-height: 75vh;
-            object-fit: contain;
-            border-radius: 4px;
-        }
-
-        .modal-details {
-            padding: 25px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .modal-id {
-            font-family: 'Cinzel', serif;
-            color: var(--accent-gold);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: #fff;
-            line-height: 1.25;
-        }
-
-        .modal-specs {
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 8px 0;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .modal-specs span { color: #fff; font-weight: 600; }
-
-        .modal-pricing-box {
-            background: #1a1e29;
-            border: 1px solid #2d3448;
-            padding: 12px;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .statement-box {
-            background: rgba(197, 160, 89, 0.05);
-            border-left: 3px solid var(--accent-gold);
-            padding: 8px 12px;
-            font-style: italic;
-            font-size: 0.85rem;
-            color: #dedee5;
-        }
-
-        .curatorial-box {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            line-height: 1.55;
-        }
-
-        .tag {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.05);
-            color: #b0b0c5;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.68rem;
-            margin: 2px;
-            border: 1px solid var(--border-color);
-        }
-
-        #toast {
-            visibility: hidden;
-            min-width: 200px;
-            background-color: #0284c7;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 10px 14px;
-            position: fixed;
-            z-index: 10000;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-
-        #toast.show {
-            visibility: visible;
-        }
-
-        footer {
-            text-align: center;
-            padding: 35px 15px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        @media (max-width: 768px) {
-            .container { padding: 15px 8px; }
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 10px !important;
-            }
-            .img-container { height: 180px !important; }
-            .card-info { padding: 10px 8px !important; }
-            .art-title { font-size: 0.85rem !important; }
-            .art-spec { font-size: 0.68rem !important; margin-bottom: 6px !important; }
-            .commercial-box { padding: 6px !important; margin-bottom: 6px !important; gap: 4px !important; }
-            .price-val { font-size: 0.95rem !important; }
-            .shipping-badge { font-size: 0.62rem !important; }
-            .btn { padding: 5px 2px !important; font-size: 0.65rem !important; }
-            .card-statement { display: none !important; }
-            header h1 { font-size: 1.6rem !important; }
-            header { padding: 25px 12px 18px !important; }
-            .modal-content { grid-template-columns: 1fr !important; }
-            .modal-img-wrap { height: 280px !important; padding: 10px !important; }
-            .modal-details { padding: 20px 15px !important; }
+        /* KHUSUS SMARTPHONE (LEBAR <= 768px): 2 KOLOM KARTU MUTLAK */
+        @media screen and (max-width: 768px) {
+            body { padding: 12px 6px; }
+            .gallery-grid { grid-template-columns: 1fr 1fr !important; gap: 6px !important; }
+            .card { border-radius: 8px; }
+            .card-content { padding: 8px 6px; }
+            .card-title { font-size: 0.8rem; line-height: 1.2; margin-bottom: 2px; }
+            .card-meta { font-size: 0.65rem; margin-bottom: 6px; }
+            .pricing-box { padding: 4px 6px; margin-bottom: 6px; flex-direction: column; gap: 2px; }
+            .contact-actions { grid-template-columns: 1fr; gap: 4px; margin-bottom: 6px; }
+            .btn { padding: 5px; font-size: 0.65rem; }
+            .statement { font-size: 0.65rem; line-height: 1.2; margin-bottom: 6px; }
         }
     </style>
 </head>
 <body>
-    
-
-    <div id="google_translate_element" style="display:none;"></div>
-
-    <div class="top-nav">
-        <div class="lang-switch">
-            <button class="active" id="btn-id" onclick="switchLang('id')">ID (Indonesia)</button>
-            <button id="btn-en" onclick="switchLang('en')">EN (English)</button>
-        </div>
-    </div>
-
-    <header>
+    <div class="header">
         <h1>Katalog Sketsa Maruto Septriono</h1>
-        <p class="subtitle">Arsip Studi Bentuk, Garis Spontan &amp; Gambar Tangan Orisinal</p>
-
-        <div class="search-container">
-            <input id="searchInput" onkeyup="filterGallery()" placeholder="Cari judul, ID (SKT-001), atau media..." type="text"/>
+        <p>Arsip Studi Bentuk, Garis Spontan & Gambar Tangan Orisinal</p>
+        <div class="counter">Total Sketsa Terarsip: 3 Karya Sketsa</div>
+    </div>
+    <div class="gallery-grid">
+        
+    <div class="card" data-id="SKT-003">
+        <div class="img-container">
+            <span class="badge badge-id">SKT-003</span>
+            <span class="badge badge-year">2026</span>
+            <img src="images/SKT-003.jpg?v=1793183469" alt="Kedua Kehidupan" loading="lazy" />
         </div>
-
-        <div class="stats-tag">
-            Total Sketsa Terarsip: <strong>3 Karya Sketsa</strong>
-        </div>
-    </header>
-
-    <main class="container">
-        <div class="gallery-grid" id="galleryGrid">
-            
-        <div class="art-card" id="card-SKT-003" data-search="skt-003 kedua kehidupan tinta di atas kertas 2026 sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono">
-            <div class="img-container" onclick="openModal('SKT-003')">
-                <img src="[https://katalog-sketsa-maruto.vercel.app/images/](https://katalog-sketsa-maruto.vercel.app/images/)SKT-003.jpg" 
-                     data-filename="SKT-003.jpg"
-                     data-artid="SKT-003"
-                     data-try="0"
-                     alt="Kedua Kehidupan" 
-                     loading="lazy" 
-                     onerror="handleImageFallback(this)"/>
-                <div class="art-badge-row">
-                    <span class="badge badge-id">SKT-003</span>
-                    <span class="badge badge-year">2026</span>
-                </div>
+        <div class="card-content">
+            <h3 class="card-title">Kedua Kehidupan</h3>
+            <p class="card-meta">29.7 cm x 42 cm • Tinta di atas kertas</p>
+            <div class="pricing-box">
+                <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
+                <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
             </div>
-
-            <div class="card-info">
-                <h3 class="art-title" onclick="openModal('SKT-003')">Kedua Kehidupan</h3>
-                <p class="art-spec">29.7 cm x 42 cm &#8226; Tinta di atas kertas</p>
-
-                <div class="commercial-box">
-                    <div class="price-col">
-                        <span class="price-label">Karya Original</span>
-                        <span class="price-val">$ 100</span>
-                    </div>
-                    <div class="price-col">
-                        <span class="price-label">Pengiriman</span>
-                        <span class="shipping-badge">Bebas Ongkir</span>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <a href="[https://instagram.com/maruto.septriono](https://instagram.com/maruto.septriono)" target="_blank" class="btn btn-dm">
-                        ✉ DM
-                    </a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=Beli Sketsa Original SKT-003 - Kedua Kehidupan" class="btn btn-email">
-                        ✉ Beli via Email
-                    </a>
-                </div>
-
-                <div class="card-statement" onclick="openModal('SKT-003')">
-                    &quot;Dalam setiap garis yang mengalir, terdapat sebuah ruang hening yang tidak pernah berhenti. Setiap bentuk yang ...&quot;
-                </div>
-
-                <div class="card-footer-row">
-                    <span class="card-footer-link" onclick="openModal('SKT-003')">&#8226; Detail &#8250;</span>
-                    <button class="btn-copy-card" onclick="copyDirectLink('SKT-003', event)" title="Salin Link">🔗 Tautan</button>
-                </div>
+            <div class="contact-actions">
+                <a href="https://ig.me/m/maruto.septriono" target="_blank" class="btn btn-dm">✉️ DM</a>
+                <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-003%20-%20Kedua Kehidupan" class="btn btn-email">✉️ Beli via Email</a>
             </div>
-        </div>
-    
-        <div class="art-card" id="card-SKT-002" data-search="skt-002 kerusakan dalam diri tinta di atas kertas 2026 sketch, drawing, inkdrawing, contemporaryart, darkart, indonesianartist, marutoseptriono">
-            <div class="img-container" onclick="openModal('SKT-002')">
-                <img src="[https://katalog-sketsa-maruto.vercel.app/images/](https://katalog-sketsa-maruto.vercel.app/images/)SKT-002.jpg" 
-                     data-filename="SKT-002.jpg"
-                     data-artid="SKT-002"
-                     data-try="0"
-                     alt="Kerusakan dalam Diri" 
-                     loading="lazy" 
-                     onerror="handleImageFallback(this)"/>
-                <div class="art-badge-row">
-                    <span class="badge badge-id">SKT-002</span>
-                    <span class="badge badge-year">2026</span>
-                </div>
-            </div>
-
-            <div class="card-info">
-                <h3 class="art-title" onclick="openModal('SKT-002')">Kerusakan dalam Diri</h3>
-                <p class="art-spec">29,7 cm x 42 cm &#8226; Tinta di atas kertas</p>
-
-                <div class="commercial-box">
-                    <div class="price-col">
-                        <span class="price-label">Karya Original</span>
-                        <span class="price-val">$ 100</span>
-                    </div>
-                    <div class="price-col">
-                        <span class="price-label">Pengiriman</span>
-                        <span class="shipping-badge">Bebas Ongkir</span>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <a href="[https://instagram.com/maruto.septriono](https://instagram.com/maruto.septriono)" target="_blank" class="btn btn-dm">
-                        ✉ DM
-                    </a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=Beli Sketsa Original SKT-002 - Kerusakan dalam Diri" class="btn btn-email">
-                        ✉ Beli via Email
-                    </a>
-                </div>
-
-                <div class="card-statement" onclick="openModal('SKT-002')">
-                    &quot;1-2 Perasaan yang terkandung di dalam karya ini adalah tentang perjalanan dari kehilangan hingga ketakutan, me...&quot;
-                </div>
-
-                <div class="card-footer-row">
-                    <span class="card-footer-link" onclick="openModal('SKT-002')">&#8226; Detail &#8250;</span>
-                    <button class="btn-copy-card" onclick="copyDirectLink('SKT-002', event)" title="Salin Link">🔗 Tautan</button>
-                </div>
-            </div>
-        </div>
-    
-        <div class="art-card" id="card-SKT-001" data-search="skt-001 kesadaran di tangan tinta di atas kertas 2026 sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono">
-            <div class="img-container" onclick="openModal('SKT-001')">
-                <img src="[https://katalog-sketsa-maruto.vercel.app/images/](https://katalog-sketsa-maruto.vercel.app/images/)SKT-001.jpg" 
-                     data-filename="SKT-001.jpg"
-                     data-artid="SKT-001"
-                     data-try="0"
-                     alt="Kesadaran di Tangan" 
-                     loading="lazy" 
-                     onerror="handleImageFallback(this)"/>
-                <div class="art-badge-row">
-                    <span class="badge badge-id">SKT-001</span>
-                    <span class="badge badge-year">2026</span>
-                </div>
-            </div>
-
-            <div class="card-info">
-                <h3 class="art-title" onclick="openModal('SKT-001')">Kesadaran di Tangan</h3>
-                <p class="art-spec">29.7 cm x 42 cm &#8226; Tinta di atas kertas</p>
-
-                <div class="commercial-box">
-                    <div class="price-col">
-                        <span class="price-label">Karya Original</span>
-                        <span class="price-val">$ 100</span>
-                    </div>
-                    <div class="price-col">
-                        <span class="price-label">Pengiriman</span>
-                        <span class="shipping-badge">Bebas Ongkir</span>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <a href="[https://instagram.com/maruto.septriono](https://instagram.com/maruto.septriono)" target="_blank" class="btn btn-dm">
-                        ✉ DM
-                    </a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=Beli Sketsa Original SKT-001 - Kesadaran di Tangan" class="btn btn-email">
-                        ✉ Beli via Email
-                    </a>
-                </div>
-
-                <div class="card-statement" onclick="openModal('SKT-001')">
-                    &quot;Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, ...&quot;
-                </div>
-
-                <div class="card-footer-row">
-                    <span class="card-footer-link" onclick="openModal('SKT-001')">&#8226; Detail &#8250;</span>
-                    <button class="btn-copy-card" onclick="copyDirectLink('SKT-001', event)" title="Salin Link">🔗 Tautan</button>
-                </div>
-            </div>
-        </div>
-    
-        </div>
-    </main>
-
-    <div class="modal" id="artModal" onclick="closeModalOnOutside(event)">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&#215;</span>
-            <div class="modal-img-wrap">
-                <img alt="Detail Sketsa" id="mImg" src=""/>
-            </div>
-            <div class="modal-details">
-                <div class="modal-id">
-                    <span id="mId">SKT-000</span>
-                    <button class="btn-copy-card" onclick="copyModalLink()">🔗 Tautan</button>
-                </div>
-                <h2 class="modal-title" id="mTitle">Judul Sketsa</h2>
-                <div class="modal-specs">
-                    <div>Tahun: <span id="mYear">2026</span></div>
-                    <div>Media: <span id="mMedia">Tinta di atas kertas</span></div>
-                    <div>Ukuran Fisik: <span id="mSize">29,7 cm x 42 cm</span></div>
-                    <div>Status Fisik: <span style="color:#10b981; font-weight:700;">Tersedia (Karya Original)</span></div>
-                </div>
-
-                <div class="modal-pricing-box">
-                    <div>
-                        <small style="color:#94a3b8; display:block;">Karya Asli (Koleksi Fisik)</small>
-                        <strong style="color:#38bdf8; font-size:1.25rem;">$ 100 USD</strong>
-                    </div>
-                    <div style="text-align:right;">
-                        <span class="shipping-badge" style="font-size:0.8rem; padding:4px 8px;">Bebas Ongkos Kirim</span>
-                    </div>
-                </div>
-
-                <div class="statement-box" id="mStatement">&quot;Artist Statement...&quot;</div>
-                <div class="curatorial-box" id="mCuratorial">Catatan kuratorial...</div>
-                <div id="mTags"></div>
-
-                <div class="action-buttons" style="margin-top:10px;">
-                    <a class="btn btn-dm" href="[https://instagram.com/maruto.septriono](https://instagram.com/maruto.septriono)" id="mDmBtn" target="_blank">
-                        ✉ DM Instagram
-                    </a>
-                    <a class="btn btn-email" href="#" id="mEmailBtn">
-                        ✉ Beli via Email
-                    </a>
-                </div>
-            </div>
+            <p class="statement">"Dalam setiap garis yang mengalir, terdapat sebuah ruang hening yang tidak pernah berhenti. Setiap bentuk yang dibentuk oleh tangan itu adalah cahaya dari kehidupan yang sedang hidup di dalamnya."</p>
+            <details class="detail-box">
+                <summary>• Detail</summary>
+                <div class="curatorial-text"><p>Karya ini menampilkan gestur tarikan garis yang dinamis dan menggambarkan sebuah sosok berdiri dengan posisi yang tenang, menciptakan kontras antara ruang gelap dan terang. Garis-garis yang digunakan tidak hanya membentuk bentuk, tetapi juga mewujudkan perbedaan dalam waktu dan ruang. Komposisi dari karya ini menggambarkan sebuah kehidupan yang sedang berlangsung di tengah hening, dengan setiap garis menjadi simbol dari proses yang terus bergerak.</p></div>
+            </details>
         </div>
     </div>
+    
 
-    <div id="toast">Tautan sketsa berhasil disalin!</div>
+    <div class="card" data-id="SKT-002">
+        <div class="img-container">
+            <span class="badge badge-id">SKT-002</span>
+            <span class="badge badge-year">2026</span>
+            <img src="images/SKT-002.jpg?v=1793183469" alt="Kerusakan dalam Diri" loading="lazy" />
+        </div>
+        <div class="card-content">
+            <h3 class="card-title">Kerusakan dalam Diri</h3>
+            <p class="card-meta">29,7 cm x 42 cm • Tinta di atas kertas</p>
+            <div class="pricing-box">
+                <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
+                <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
+            </div>
+            <div class="contact-actions">
+                <a href="https://ig.me/m/maruto.septriono" target="_blank" class="btn btn-dm">✉️ DM</a>
+                <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-002%20-%20Kerusakan dalam Diri" class="btn btn-email">✉️ Beli via Email</a>
+            </div>
+            <p class="statement">"1-2 Perasaan yang terkandung di dalam karya ini adalah tentang perjalanan dari kehilangan hingga ketakutan, menggambarkan sebuah peristiwa yang mungkin telah terjadi dan akan terus berlangsung."</p>
+            <details class="detail-box">
+                <summary>• Detail</summary>
+                <div class="curatorial-text"><p>Dengan cara yang sangat ekspresif, gambar ini menggunakan garis-garis arsir yang dinamis untuk menggambarkan bentuk kendaraan yang terlihat seperti sebuah mobil. Garis-garis tersebut tidak hanya menunjukkan bentuk fisik, tetapi juga menciptakan efek dari kehilangan dan ketakutan yang mengalir dalam karya ini. Bentuk dan ekspresi visualnya menjadi sangat kuat dengan kombinasi antara ruang, waktu, dan perasaan yang terkandung di dalamnya.</p></div>
+            </details>
+        </div>
+    </div>
+    
 
-    <footer>
-        <p>&#169; 2026 Maruto Septriono. Arsip Sketsa &amp; Eksplorasi Visual Orisinal.</p>
-    </footer>
-
-    <script src="[https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit](https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit)" type="text/javascript"></script>
-
-    <script type="text/javascript">
-    //<![CDATA[
-        const catalogData = [{"ID": "SKT-001", "Judul": "Kesadaran di Tangan", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-001 - Kesadaran di Tangan.jpg", "web_image": "SKT-001.jpg", "artist_statement_id": "Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan.", "deskripsi_kuratorial": "Garis-garis tinta yang digunakan dalam karya ini membentuk sebuah struktur visual yang dinamis, menunjukkan gerakan dan kekuatan dari bentuk-bentuk yang terbentuk. Kontras antara gelap dan terang menciptakan ruang yang mendalam, menggambarkan ketenangan yang tidak pernah berhenti di tengah keterbatasan. Komposisi ini menyoroti hubungan antara objek dengan ruang sekitarnya, serta menunjukkan bahwa bentuk-bentuk itu bukan hanya bentuk fisik, tetapi juga representasi dari perasaan dan kehidupan yang sedang berlangsung.", "tags": "sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono"}, {"ID": "SKT-002", "Judul": "Kerusakan dalam Diri", "Tahun": "2026", "Ukuran": "29,7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-002 - Hening di Antara Kebutuhan.jpg", "web_image": "SKT-002.jpg", "artist_statement_id": "1-2 Perasaan yang terkandung di dalam karya ini adalah tentang perjalanan dari kehilangan hingga ketakutan, menggambarkan sebuah peristiwa yang mungkin telah terjadi dan akan terus berlangsung.", "deskripsi_kuratorial": "Dengan cara yang sangat ekspresif, gambar ini menggunakan garis-garis arsir yang dinamis untuk menggambarkan bentuk kendaraan yang terlihat seperti sebuah mobil. Garis-garis tersebut tidak hanya menunjukkan bentuk fisik, tetapi juga menciptakan efek dari kehilangan dan ketakutan yang mengalir dalam karya ini. Bentuk dan ekspresi visualnya menjadi sangat kuat dengan kombinasi antara ruang, waktu, dan perasaan yang terkandung di dalamnya.", "tags": "sketch, drawing, inkdrawing, contemporaryart, darkart, indonesianartist, marutoseptriono"}, {"ID": "SKT-003", "Judul": "Kedua Kehidupan", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-003 - Kedua Kehidupan.jpg", "web_image": "SKT-003.jpg", "artist_statement_id": "Dalam setiap garis yang mengalir, terdapat sebuah ruang hening yang tidak pernah berhenti. Setiap bentuk yang dibentuk oleh tangan itu adalah cahaya dari kehidupan yang sedang hidup di dalamnya.", "deskripsi_kuratorial": "Karya ini menampilkan gestur tarikan garis yang dinamis dan menggambarkan sebuah sosok berdiri dengan posisi yang tenang, menciptakan kontras antara ruang gelap dan terang. Garis-garis yang digunakan tidak hanya membentuk bentuk, tetapi juga mewujudkan perbedaan dalam waktu dan ruang. Komposisi dari karya ini menggambarkan sebuah kehidupan yang sedang berlangsung di tengah hening, dengan setiap garis menjadi simbol dari proses yang terus bergerak.", "tags": "sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono"}];
-        let currentModalArtId = '';
-
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'id',
-                includedLanguages: 'en,id',
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-
-        function switchLang(lang) {
-            document.getElementById('btn-id').classList.toggle('active', lang === 'id');
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-            const select = document.querySelector('.goog-te-combo');
-            if (select) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-                showToast(lang === 'en' ? '🌐 Switch to English' : '🇮🇩 Kembali ke Bahasa Indonesia');
-            } else {
-                const host = window.location.hostname;
-                document.cookie = 'googtrans=/id/' + lang + '; path=/; domain=' + host;
-                document.cookie = 'googtrans=/id/' + lang + '; path=/;';
-                window.location.reload();
-            }
-        }
-
-        // MULTI-CDN SMART FALLBACK
-        function handleImageFallback(img) {
-            const currentTry = parseInt(img.getAttribute('data-try') || '0');
-            const fname = img.getAttribute('data-filename') || '';
-
-            if (currentTry === 0) {
-                img.setAttribute('data-try', '1');
-                img.src = '[https://wizhclop.github.io/katalog-sketsa-maruto/images/](https://wizhclop.github.io/katalog-sketsa-maruto/images/)' + fname;
-            } else if (currentTry === 1) {
-                img.setAttribute('data-try', '2');
-                img.src = '[https://cdn.jsdelivr.net/gh/wizhclop/katalog-sketsa-maruto@main/images/](https://cdn.jsdelivr.net/gh/wizhclop/katalog-sketsa-maruto@main/images/)' + fname;
-            } else {
-                img.src = '[https://via.placeholder.com/400x500/181820/888?text=Maruto+Sketch](https://via.placeholder.com/400x500/181820/888?text=Maruto+Sketch)';
-            }
-        }
-
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.innerText = msg;
-            t.className = 'show';
-            setTimeout(function() { t.className = t.className.replace('show', ''); }, 2800);
-        }
-
-        function copyDirectLink(artId, e) {
-            if (e) e.stopPropagation();
-            const url = window.location.origin + window.location.pathname + '#' + artId;
-            navigator.clipboard.writeText(url).then(function() {
-                showToast('🔗 Tautan ' + artId + ' berhasil disalin!');
-            }).catch(function() {
-                prompt('Salin tautan ini:', url);
-            });
-        }
-
-        function copyModalLink() {
-            if (currentModalArtId) {
-                copyDirectLink(currentModalArtId);
-            }
-        }
-
-        function filterGallery() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.art-card');
-
-            cards.forEach(function(card) {
-                const searchData = card.getAttribute('data-search') || '';
-                if (searchData.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        function openModal(artId, updateHash) {
-            if (updateHash === undefined) updateHash = true;
-            const item = catalogData.find(function(x) { return (x.ID === artId || x.id === artId); });
-            if (!item) return;
-
-            currentModalArtId = item.ID || item.id || '';
-            document.getElementById('mId').innerText = currentModalArtId;
-            const title = item.Judul || item.judul || 'Tanpa Judul';
-            document.getElementById('mTitle').innerText = title;
-            document.getElementById('mYear').innerText = item.Tahun || item.tahun || '-';
-            document.getElementById('mMedia').innerText = item.Media || 'Tinta di atas kertas';
-            document.getElementById('mSize').innerText = item.Ukuran || '29,7 cm x 42 cm';
-            
-            const webImg = currentModalArtId + '.jpg';
-            const mImgEl = document.getElementById('mImg');
-            mImgEl.setAttribute('data-try', '0');
-            mImgEl.setAttribute('data-filename', webImg);
-            mImgEl.onerror = function() { handleImageFallback(this); };
-            mImgEl.src = '[https://katalog-sketsa-maruto.vercel.app/images/](https://katalog-sketsa-maruto.vercel.app/images/)' + webImg;
-
-            document.getElementById('mStatement').innerText = '"' + (item.artist_statement_id || 'Refleksi artistik.') + '"';
-            document.getElementById('mCuratorial').innerText = item.deskripsi_kuratorial || 'Belum ada catatan kuratorial rinci.';
-
-            document.getElementById('mEmailBtn').href = 'mailto:kirimdoa@gmail.com?subject=Beli Sketsa Original ' + currentModalArtId + ' - ' + encodeURIComponent(title);
-
-            const tagsDiv = document.getElementById('mTags');
-            tagsDiv.innerHTML = '';
-            if (item.tags) {
-                item.tags.split(',').forEach(function(t) {
-                    const clean = t.trim().replace('#', '');
-                    if (clean) {
-                        const span = document.createElement('span');
-                        span.className = 'tag';
-                        span.innerText = '#' + clean;
-                        tagsDiv.appendChild(span);
-                    }
-                });
-            }
-
-            document.getElementById('artModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-
-            if (updateHash) {
-                history.pushState(null, null, '#' + currentModalArtId);
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('artModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            currentModalArtId = '';
-            history.pushState(null, null, window.location.pathname);
-        }
-
-        function closeModalOnOutside(e) {
-            if (e.target.id === 'artModal') { closeModal(); }
-        }
-
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
-
-        window.addEventListener('DOMContentLoaded', function() {
-            const hash = window.location.hash.replace('#', '').trim();
-            if (hash) {
-                setTimeout(function() {
-                    openModal(hash, false);
-                    const el = document.getElementById('card-' + hash);
-                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
-            }
-        });
-
-        window.addEventListener('popstate', function() {
-            const hash = window.location.hash.replace('#', '').trim();
-            if (hash) {
-                openModal(hash, false);
-            } else {
-                closeModal();
-            }
-        });
-    //]]>
-    </script>
+    <div class="card" data-id="SKT-001">
+        <div class="img-container">
+            <span class="badge badge-id">SKT-001</span>
+            <span class="badge badge-year">2026</span>
+            <img src="images/SKT-001.jpg?v=1793183469" alt="Kesadaran di Tangan" loading="lazy" />
+        </div>
+        <div class="card-content">
+            <h3 class="card-title">Kesadaran di Tangan</h3>
+            <p class="card-meta">29.7 cm x 42 cm • Tinta di atas kertas</p>
+            <div class="pricing-box">
+                <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
+                <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
+            </div>
+            <div class="contact-actions">
+                <a href="https://ig.me/m/maruto.septriono" target="_blank" class="btn btn-dm">✉️ DM</a>
+                <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-001%20-%20Kesadaran di Tangan" class="btn btn-email">✉️ Beli via Email</a>
+            </div>
+            <p class="statement">"Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan."</p>
+            <details class="detail-box">
+                <summary>• Detail</summary>
+                <div class="curatorial-text"><p>Garis-garis tinta yang digunakan dalam karya ini membentuk sebuah struktur visual yang dinamis, menunjukkan gerakan dan kekuatan dari bentuk-bentuk yang terbentuk. Kontras antara gelap dan terang menciptakan ruang yang mendalam, menggambarkan ketenangan yang tidak pernah berhenti di tengah keterbatasan. Komposisi ini menyoroti hubungan antara objek dengan ruang sekitarnya, serta menunjukkan bahwa bentuk-bentuk itu bukan hanya bentuk fisik, tetapi juga representasi dari perasaan dan kehidupan yang sedang berlangsung.</p></div>
+            </details>
+        </div>
+    </div>
+    
+    </div>
+    <footer>&copy; 2026 Maruto Septriono. Arsip Sketsa & Eksplorasi Visual Orisinal.</footer>
 </body>
 </html>
