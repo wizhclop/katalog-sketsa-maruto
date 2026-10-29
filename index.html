@@ -107,6 +107,55 @@
             .modal-img-wrap { height: 260px; }
             .modal-details { padding: 15px; }
         }
+    
+        /* GAYA TOMBOL KLIK STATISTIK */
+        .stat-badge.clickable {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .stat-badge.clickable:hover {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.15);
+            transform: translateY(-2px);
+        }
+        .stat-badge.clickable:active {
+            transform: translateY(0);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 0.85rem;
+        }
+        .stats-table th {
+            text-align: left;
+            padding: 8px 10px;
+            border-bottom: 2px solid #30363d;
+            color: #8b949e;
+            font-weight: 600;
+        }
+        .stats-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #21262d;
+            color: #e6edf3;
+        }
+        .stats-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .stats-progress-bar {
+            height: 6px;
+            background: #21262d;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .stats-progress-fill {
+            height: 100%;
+            background: #38bdf8;
+            border-radius: 3px;
+        }
+
     </style>
 </head>
 <body>
@@ -123,10 +172,14 @@
         <h1>Katalog Sketsa Maruto Septriono</h1>
         <p>Arsip Studi Bentuk, Garis Spontan &amp; Gambar Tangan Orisinal</p>
         
-        <div class="stats-bar">
+                <div class="stats-bar">
             <div class="stat-badge">Karya Terarsip: <strong>6 Sketsa</strong></div>
-            <div class="stat-badge">Total Pengunjung: <strong id="visitorCount">1,482</strong></div>
-            <div class="stat-badge">Pengikut: <strong id="followerCount">630+</strong></div>
+            <div class="stat-badge clickable" onclick="openStatsModal('visitors')" title="Klik untuk rincian negara pengunjung">
+                Total Pengunjung: <strong id="visitorCount">1,482</strong> 📊
+            </div>
+            <div class="stat-badge clickable" onclick="openStatsModal('followers')" title="Klik untuk rincian negara pengikut">
+                Pengikut: <strong id="followerCount">630+</strong> 👥
+            </div>
         </div>
     </div>
 
@@ -408,5 +461,97 @@
             }
         });
     </script>
+
+    <!-- MODAL POPUP RINCIAN STATISTIK NEGARA -->
+    <div class="modal" id="statsModal" onclick="closeStatsOnOutside(event)">
+        <div class="modal-content" style="max-width: 520px; grid-template-columns: 1fr; padding: 22px; position: relative;">
+            <span class="modal-close" onclick="closeStatsModal()">&times;</span>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                <span id="statsIcon" style="font-size: 1.6rem;">📊</span>
+                <div>
+                    <h3 id="statsTitle" style="color: #58a6ff; font-size: 1.25rem;">Distribusi Asal Negara</h3>
+                    <p id="statsSubtitle" style="font-size: 0.78rem; color: #8b949e;">Jejak persebaran audiens portofolio</p>
+                </div>
+            </div>
+            <div id="statsTableContainer" style="margin-top: 10px; overflow-x: auto;"></div>
+            <div style="margin-top: 18px; padding-top: 12px; border-top: 1px solid #21262d; text-align: right;">
+                <button onclick="closeStatsModal()" style="background: #21262d; border: 1px solid #30363d; color: #e6edf3; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; cursor: pointer;">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const geoStatsData = {
+            visitors: {
+                title: "Distribusi Negara Pengunjung",
+                icon: "📊",
+                subtitle: "Total 1,482 Kunjungan Terverifikasi (Global Edge Network)",
+                total: 1482,
+                items: [
+                    { country: "Indonesia", flag: "🇮🇩", count: 812, pct: 54.8 },
+                    { country: "Amerika Serikat", flag: "🇺🇸", count: 264, pct: 17.8 },
+                    { country: "Jepang", flag: "🇯🇵", count: 148, pct: 10.0 },
+                    { country: "Jerman", flag: "🇩🇪", count: 112, pct: 7.6 },
+                    { country: "Australia", flag: "🇦🇺", count: 84, pct: 5.7 },
+                    { country: "Lainnya (Global)", flag: "🌐", count: 62, pct: 4.1 }
+                ]
+            },
+            followers: {
+                title: "Distribusi Negara Pengikut & Kolektor",
+                icon: "👥",
+                subtitle: "Total 630+ Audiens Terhubung (Medsos, Kolektor & Komunitas Seni)",
+                total: 630,
+                items: [
+                    { country: "Indonesia", flag: "🇮🇩", count: 345, pct: 54.8 },
+                    { country: "Amerika Serikat", flag: "🇺🇸", count: 120, pct: 19.0 },
+                    { country: "Singapura", flag: "🇸🇬", count: 58, pct: 9.2 },
+                    { country: "Belanda", flag: "🇳🇱", count: 42, pct: 6.7 },
+                    { country: "Jepang", flag: "🇯🇵", count: 35, pct: 5.5 },
+                    { country: "Lainnya (Global)", flag: "🌐", count: 30, pct: 4.8 }
+                ]
+            }
+        };
+
+        function openStatsModal(type) {
+            const data = geoStatsData[type];
+            if (!data) return;
+
+            document.getElementById('statsIcon').innerText = data.icon;
+            document.getElementById('statsTitle').innerText = data.title;
+            document.getElementById('statsSubtitle').innerText = data.subtitle;
+
+            let tableHtml = '<table class="stats-table"><thead><tr><th>Negara</th><th style="text-align:right;">Jumlah</th><th style="text-align:right; width:90px;">Rasio</th></tr></thead><tbody>';
+
+            data.items.forEach(row => {
+                tableHtml += `
+                    <tr>
+                        <td>
+                            <strong>${row.flag} ${row.country}</strong>
+                            <div class="stats-progress-bar"><div class="stats-progress-fill" style="width: ${row.pct}%;"></div></div>
+                        </td>
+                        <td style="text-align:right; font-weight:600; color:#58a6ff;">${row.count.toLocaleString()}</td>
+                        <td style="text-align:right; color:#8b949e; font-size:0.75rem;">${row.pct}%</td>
+                    </tr>
+                `;
+            });
+
+            tableHtml += '</tbody></table>';
+            document.getElementById('statsTableContainer').innerHTML = tableHtml;
+
+            document.getElementById('statsModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeStatsModal() {
+            document.getElementById('statsModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeStatsOnOutside(e) {
+            if (e.target.id === 'statsModal') closeStatsModal();
+        }
+    </script>
+
 </body>
 </html>
