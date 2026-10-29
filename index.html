@@ -6,8 +6,15 @@
     <title>Katalog Sketsa Maruto Septriono</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding-bottom: 60px; }
+        body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding-bottom: 60px; top: 0 !important; }
         
+        /* SEMBUNYIKAN BANNER GOOGLE TRANSLATE AGAR TAMPILAN BERSIH */
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
+        body { top: 0px !important; }
+        #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+        .goog-text-highlight { background: none !important; box-shadow: none !important; }
+        #google_translate_element { display: none; }
+
         header { text-align: center; padding: 25px 12px 15px; position: relative; }
         .lang-switch {
             display: inline-flex;
@@ -22,8 +29,8 @@
             background: transparent;
             border: none;
             color: #8b949e;
-            padding: 4px 12px;
-            font-size: 0.75rem;
+            padding: 5px 14px;
+            font-size: 0.78rem;
             font-weight: bold;
             border-radius: 16px;
             cursor: pointer;
@@ -74,7 +81,7 @@
         .modal-box { background: #161b22; border: 1px solid #38bdf8; border-radius: 12px; width: 100%; max-width: 480px; padding: 20px; position: relative; color: #e6edf3; }
         .modal-close { position: absolute; top: 10px; right: 14px; font-size: 24px; color: #8b949e; cursor: pointer; font-weight: bold; }
 
-        /* KUNCI 2 KOLOM DI MOBILE (LEBAR <= 768px) */
+        /* KUNCI MUTLAK 2 KOLOM DI MOBILE */
         @media screen and (max-width: 768px) {
             header { padding: 18px 8px 12px; }
             header h1 { font-size: 1.3rem; }
@@ -102,17 +109,19 @@
     </style>
 </head>
 <body>
+    <div id="google_translate_element"></div>
+
     <header>
         <div class="lang-switch">
-            <button class="lang-btn active" id="btn-id" onclick="setLanguage('id')">🇮🇩 ID</button>
-            <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">🇬🇧 EN</button>
+            <button class="lang-btn active" id="btn-id" onclick="gantiBahasa('id')">🇮🇩 ID</button>
+            <button class="lang-btn" id="btn-en" onclick="gantiBahasa('en')">🇬🇧 EN</button>
         </div>
-        <h1 id="hdr-title">Katalog Sketsa Maruto Septriono</h1>
-        <p id="hdr-sub">Arsip Studi Bentuk, Garis Spontan & Gambar Tangan Orisinal</p>
+        <h1>Katalog Sketsa Maruto Septriono</h1>
+        <p>Arsip Studi Bentuk, Garis Spontan & Gambar Tangan Orisinal</p>
         <div class="stats-bar">
-            <div class="stat-badge"><span id="lbl-arsip">Karya Terarsip:</span> <strong>7 <span id="lbl-unit">Sketsa</span></strong></div>
-            <div class="stat-badge clickable" onclick="bukaModalStats('visitors')"><span id="lbl-vis">Total Pengunjung:</span> <strong>1,482</strong> 📊</div>
-            <div class="stat-badge clickable" onclick="bukaModalStats('followers')"><span id="lbl-fol">Pengikut:</span> <strong>630+</strong> 👥</div>
+            <div class="stat-badge">Karya Terarsip: <strong>7 Sketsa</strong></div>
+            <div class="stat-badge clickable" onclick="bukaModalStats('visitors')">Total Pengunjung: <strong>1,482</strong> 📊</div>
+            <div class="stat-badge clickable" onclick="bukaModalStats('followers')">Pengikut: <strong>630+</strong> 👥</div>
         </div>
     </header>
 
@@ -125,28 +134,28 @@
                 <img src="images/SKT-007.jpg" alt="Hening Jalan" loading="lazy">
             </div>
             <div class="card-body">
-                <h3 class="card-title trans-title">Hening Jalan</h3>
-                <div class="card-meta"><span class="trans-size">29.7 cm x 42 cm</span> • <span class="trans-media">Tinta di atas kertas</span></div>
+                <h3 class="card-title">Hening Jalan</h3>
+                <div class="card-meta"><span>29.7 cm x 42 cm</span> • <span>Tinta di atas kertas</span></div>
                 <div class="card-price-row">
                     <div>
-                        <div class="price-label trans-orig">Karya Original</div>
+                        <div class="price-label">Karya Original</div>
                         <div class="price-val">$100</div>
                     </div>
                     <div style="text-align: right;">
-                        <div class="price-label trans-ship">Pengiriman</div>
-                        <div class="shipping-val trans-free">Bebas Ongkir</div>
+                        <div class="price-label">Pengiriman</div>
+                        <div class="shipping-val">Bebas Ongkir</div>
                     </div>
                 </div>
                 <div class="card-actions">
                     <a href="https://ig.me/m/maruto.septriono?text=Halo%20Mas%20Maruto,%20saya%20tertarik%20dengan%20karya%20SKT-007%20di%20Vercel" target="_blank" class="btn-action btn-dm">✉ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-007%20-%20Hening Jalan&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-007%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-007" class="btn-action btn-email trans-buy">✉ Beli via Email</a>
+                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-007%20-%20Hening Jalan&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-007%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-007" class="btn-action btn-email">✉ Beli via Email</a>
                 </div>
-                <div class="statement-box trans-stmt">
+                <div class="statement-box">
                     "Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya."
                 </div>
                 <div class="card-footer-links">
-                    <span class="btn-kuratorial trans-kur-btn" onclick="bukaModalKuratorial('SKT-007', 'Hening Jalan', 'Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya.', 'Gambar ini menggambarkan suasana hening di tengah kehidupan perkotaan, dengan komposisi yang dinamis namun tetap dalam kesederhanaan. Garis-garis kontur tinta membentuk jalur-jalur yang menyerupai cahaya dari langit, menghubungkan ruang terbuka dan bangunan-bangunan yang tertutup di bawahnya. Ketebalan pada setiap garis menciptakan kontras yang mendalam antara hening dan aktivitas, membangun suasana yang khas dari perpaduan antara kehadiran dan ketiadaan. Karya ini menggambarkan makna dari gerak yang terus-menerus dalam waktu yang berhenti, melalui bentuk-bentuk yang dibuat dengan cara yang tidak teratur namun menunjukkan arah yang jelas.')">Kuratorial &rsaquo;</span>
-                    <span class="btn-copy-link trans-copy-btn" onclick="salinLink('SKT-007')">🔗 Salin Link</span>
+                    <span class="btn-kuratorial" onclick="bukaModalKuratorial('SKT-007', 'Hening Jalan', 'Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya.', 'Gambar ini menggambarkan suasana hening di tengah kehidupan perkotaan, dengan komposisi yang dinamis namun tetap dalam kesederhanaan. Garis-garis kontur tinta membentuk jalur-jalur yang menyerupai cahaya dari langit, menghubungkan ruang terbuka dan bangunan-bangunan yang tertutup di bawahnya. Ketebalan pada setiap garis menciptakan kontras yang mendalam antara hening dan aktivitas, membangun suasana yang khas dari perpaduan antara kehadiran dan ketiadaan. Karya ini menggambarkan makna dari gerak yang terus-menerus dalam waktu yang berhenti, melalui bentuk-bentuk yang dibuat dengan cara yang tidak teratur namun menunjukkan arah yang jelas.')">Kuratorial &rsaquo;</span>
+                    <span class="btn-copy-link" onclick="salinLink('SKT-007')">🔗 Salin Link</span>
                 </div>
             </div>
         </div>
@@ -159,28 +168,28 @@
                 <img src="images/SKT-006.jpg" alt="Hening di Kota" loading="lazy">
             </div>
             <div class="card-body">
-                <h3 class="card-title trans-title">Hening di Kota</h3>
-                <div class="card-meta"><span class="trans-size">29.7 cm x 42 cm</span> • <span class="trans-media">Tinta di atas kertas</span></div>
+                <h3 class="card-title">Hening di Kota</h3>
+                <div class="card-meta"><span>29.7 cm x 42 cm</span> • <span>Tinta di atas kertas</span></div>
                 <div class="card-price-row">
                     <div>
-                        <div class="price-label trans-orig">Karya Original</div>
+                        <div class="price-label">Karya Original</div>
                         <div class="price-val">$100</div>
                     </div>
                     <div style="text-align: right;">
-                        <div class="price-label trans-ship">Pengiriman</div>
-                        <div class="shipping-val trans-free">Bebas Ongkir</div>
+                        <div class="price-label">Pengiriman</div>
+                        <div class="shipping-val">Bebas Ongkir</div>
                     </div>
                 </div>
                 <div class="card-actions">
                     <a href="https://ig.me/m/maruto.septriono?text=Halo%20Mas%20Maruto,%20saya%20tertarik%20dengan%20karya%20SKT-006%20di%20Vercel" target="_blank" class="btn-action btn-dm">✉ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-006%20-%20Hening di Kota&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-006%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-006" class="btn-action btn-email trans-buy">✉ Beli via Email</a>
+                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-006%20-%20Hening di Kota&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-006%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-006" class="btn-action btn-email">✉ Beli via Email</a>
                 </div>
-                <div class="statement-box trans-stmt">
+                <div class="statement-box">
                     "Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya."
                 </div>
                 <div class="card-footer-links">
-                    <span class="btn-kuratorial trans-kur-btn" onclick="bukaModalKuratorial('SKT-006', 'Hening di Kota', 'Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya.', 'Gambar ini menggambarkan sebuah adegan yang terjebak dalam keheningan, dengan bentuk-bentuk tangan dan tubuh yang dibuat dari garis kontur yang kuat dan tebal. Komposisi bidang menunjukkan perpaduan antara objek-objek gelap dan ruang yang luas, menciptakan kontras yang mendalam. Ruang heningnya di dalam gambar terbentuk oleh pola-pola garis yang menggambarkan keberadaan di luar, membangun suasana yang mungkin sedang berlangsung. Dari segi teknik, keterbatasan dan ketebalan dari tinta menciptakan kesan yang mendalam, menekankan perbedaan antara bentuk-bentuk yang terlihat dan yang tidak terlihat. Karya ini menggambarkan pemandangan yang dihiasi oleh keheningan, yang merupakan hasil dari gerak yang tidak terlalu terjadi, dan membangun persepsi tentang makna dalam ruang yang luas.')">Kuratorial &rsaquo;</span>
-                    <span class="btn-copy-link trans-copy-btn" onclick="salinLink('SKT-006')">🔗 Salin Link</span>
+                    <span class="btn-kuratorial" onclick="bukaModalKuratorial('SKT-006', 'Hening di Kota', 'Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya.', 'Gambar ini menggambarkan sebuah adegan yang terjebak dalam keheningan, dengan bentuk-bentuk tangan dan tubuh yang dibuat dari garis kontur yang kuat dan tebal. Komposisi bidang menunjukkan perpaduan antara objek-objek gelap dan ruang yang luas, menciptakan kontras yang mendalam. Ruang heningnya di dalam gambar terbentuk oleh pola-pola garis yang menggambarkan keberadaan di luar, membangun suasana yang mungkin sedang berlangsung. Dari segi teknik, keterbatasan dan ketebalan dari tinta menciptakan kesan yang mendalam, menekankan perbedaan antara bentuk-bentuk yang terlihat dan yang tidak terlihat. Karya ini menggambarkan pemandangan yang dihiasi oleh keheningan, yang merupakan hasil dari gerak yang tidak terlalu terjadi, dan membangun persepsi tentang makna dalam ruang yang luas.')">Kuratorial &rsaquo;</span>
+                    <span class="btn-copy-link" onclick="salinLink('SKT-006')">🔗 Salin Link</span>
                 </div>
             </div>
         </div>
@@ -193,28 +202,28 @@
                 <img src="images/SKT-005.jpg" alt="Ruang Kota" loading="lazy">
             </div>
             <div class="card-body">
-                <h3 class="card-title trans-title">Ruang Kota</h3>
-                <div class="card-meta"><span class="trans-size">29.7 cm x 42 cm</span> • <span class="trans-media">Tinta di atas kertas</span></div>
+                <h3 class="card-title">Ruang Kota</h3>
+                <div class="card-meta"><span>29.7 cm x 42 cm</span> • <span>Tinta di atas kertas</span></div>
                 <div class="card-price-row">
                     <div>
-                        <div class="price-label trans-orig">Karya Original</div>
+                        <div class="price-label">Karya Original</div>
                         <div class="price-val">$100</div>
                     </div>
                     <div style="text-align: right;">
-                        <div class="price-label trans-ship">Pengiriman</div>
-                        <div class="shipping-val trans-free">Bebas Ongkir</div>
+                        <div class="price-label">Pengiriman</div>
+                        <div class="shipping-val">Bebas Ongkir</div>
                     </div>
                 </div>
                 <div class="card-actions">
                     <a href="https://ig.me/m/maruto.septriono?text=Halo%20Mas%20Maruto,%20saya%20tertarik%20dengan%20karya%20SKT-005%20di%20Vercel" target="_blank" class="btn-action btn-dm">✉ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-005%20-%20Ruang Kota&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-005%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-005" class="btn-action btn-email trans-buy">✉ Beli via Email</a>
+                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-005%20-%20Ruang Kota&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-005%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-005" class="btn-action btn-email">✉ Beli via Email</a>
                 </div>
-                <div class="statement-box trans-stmt">
+                <div class="statement-box">
                     "Bagi saya, sebuah ruang perkotaan yang dinamis dan penuh kehidupan. Di balik tarikan tinta ini tersimpan keheningan batin yang membeku."
                 </div>
                 <div class="card-footer-links">
-                    <span class="btn-kuratorial trans-kur-btn" onclick="bukaModalKuratorial('SKT-005', 'Ruang Kota', 'Bagi saya, sebuah ruang perkotaan yang dinamis dan penuh kehidupan. Di balik tarikan tinta ini tersimpan keheningan batin yang membeku.', 'Karya ini menggambarkan sebuah ruang perkotaan yang dinamis dan penuh kehidupan. Dalam sketsa hitam putih ini, figur manusia dalam posisi duduk di depan mobil, terlihat sebagai satu-satunya elemen yang menghubungkan dengan lingkungan sekitar. Keterbatasan ruang yang ditampilkan oleh garis kontur dan arsir menciptakan kesan ketegangan antara kenyamanan dan keberadaan yang sedikit menjauh dari pusat. Sebuah kendaraan di tengah gambar menggambarkan pergerakan sehari-hari, terutama dalam konteks perkotaan modern. Penampilan figur manusia secara sketsa memberikan kesan keterbatasan ruang dan kehidupan yang dinamis. Komposisi bidang menunjukkan interaksi antara objek-objek yang tersebar di atas permukaan, menciptakan suasana ruang yang terbangun dari ketegangan visual.')">Kuratorial &rsaquo;</span>
-                    <span class="btn-copy-link trans-copy-btn" onclick="salinLink('SKT-005')">🔗 Salin Link</span>
+                    <span class="btn-kuratorial" onclick="bukaModalKuratorial('SKT-005', 'Ruang Kota', 'Bagi saya, sebuah ruang perkotaan yang dinamis dan penuh kehidupan. Di balik tarikan tinta ini tersimpan keheningan batin yang membeku.', 'Karya ini menggambarkan sebuah ruang perkotaan yang dinamis dan penuh kehidupan. Dalam sketsa hitam putih ini, figur manusia dalam posisi duduk di depan mobil, terlihat sebagai satu-satunya elemen yang menghubungkan dengan lingkungan sekitar. Keterbatasan ruang yang ditampilkan oleh garis kontur dan arsir menciptakan kesan ketegangan antara kenyamanan dan keberadaan yang sedikit menjauh dari pusat. Sebuah kendaraan di tengah gambar menggambarkan pergerakan sehari-hari, terutama dalam konteks perkotaan modern. Penampilan figur manusia secara sketsa memberikan kesan keterbatasan ruang dan kehidupan yang dinamis. Komposisi bidang menunjukkan interaksi antara objek-objek yang tersebar di atas permukaan, menciptakan suasana ruang yang terbangun dari ketegangan visual.')">Kuratorial &rsaquo;</span>
+                    <span class="btn-copy-link" onclick="salinLink('SKT-005')">🔗 Salin Link</span>
                 </div>
             </div>
         </div>
@@ -227,28 +236,28 @@
                 <img src="images/SKT-004.jpg" alt="Kerja di Hening" loading="lazy">
             </div>
             <div class="card-body">
-                <h3 class="card-title trans-title">Kerja di Hening</h3>
-                <div class="card-meta"><span class="trans-size">29.7 cm x 42 cm</span> • <span class="trans-media">Tinta di atas kertas</span></div>
+                <h3 class="card-title">Kerja di Hening</h3>
+                <div class="card-meta"><span>29.7 cm x 42 cm</span> • <span>Tinta di atas kertas</span></div>
                 <div class="card-price-row">
                     <div>
-                        <div class="price-label trans-orig">Karya Original</div>
+                        <div class="price-label">Karya Original</div>
                         <div class="price-val">$100</div>
                     </div>
                     <div style="text-align: right;">
-                        <div class="price-label trans-ship">Pengiriman</div>
-                        <div class="shipping-val trans-free">Bebas Ongkir</div>
+                        <div class="price-label">Pengiriman</div>
+                        <div class="shipping-val">Bebas Ongkir</div>
                     </div>
                 </div>
                 <div class="card-actions">
                     <a href="https://ig.me/m/maruto.septriono?text=Halo%20Mas%20Maruto,%20saya%20tertarik%20dengan%20karya%20SKT-004%20di%20Vercel" target="_blank" class="btn-action btn-dm">✉ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-004%20-%20Kerja di Hening&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-004%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-004" class="btn-action btn-email trans-buy">✉ Beli via Email</a>
+                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-004%20-%20Kerja di Hening&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-004%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-004" class="btn-action btn-email">✉ Beli via Email</a>
                 </div>
-                <div class="statement-box trans-stmt">
+                <div class="statement-box">
                     "Dalam setiap garis yang menyebar, terdapat sebuah ruang kosong yang tidak pernah selesai. Karya ini bukan hanya menggambarkan, tetapi menciptakan ruang yang menyimpan waktu dan kehadiran."
                 </div>
                 <div class="card-footer-links">
-                    <span class="btn-kuratorial trans-kur-btn" onclick="bukaModalKuratorial('SKT-004', 'Kerja di Hening', 'Dalam setiap garis yang menyebar, terdapat sebuah ruang kosong yang tidak pernah selesai. Karya ini bukan hanya menggambarkan, tetapi menciptakan ruang yang menyimpan waktu dan kehadiran.', 'Garis-garis tinta yang ditarik secara dinamis membentuk sebuah kota yang terjaga dalam hening. Kontras antara gelap dan terang menunjukkan perbedaan dalam bentuk, namun juga menggambarkan kehadiran dari ruang yang tidak diisi. Komposisi ini menciptakan suasana yang tenang, seperti waktu yang bergerak dalam keadaan diam.')">Kuratorial &rsaquo;</span>
-                    <span class="btn-copy-link trans-copy-btn" onclick="salinLink('SKT-004')">🔗 Salin Link</span>
+                    <span class="btn-kuratorial" onclick="bukaModalKuratorial('SKT-004', 'Kerja di Hening', 'Dalam setiap garis yang menyebar, terdapat sebuah ruang kosong yang tidak pernah selesai. Karya ini bukan hanya menggambarkan, tetapi menciptakan ruang yang menyimpan waktu dan kehadiran.', 'Garis-garis tinta yang ditarik secara dinamis membentuk sebuah kota yang terjaga dalam hening. Kontras antara gelap dan terang menunjukkan perbedaan dalam bentuk, namun juga menggambarkan kehadiran dari ruang yang tidak diisi. Komposisi ini menciptakan suasana yang tenang, seperti waktu yang bergerak dalam keadaan diam.')">Kuratorial &rsaquo;</span>
+                    <span class="btn-copy-link" onclick="salinLink('SKT-004')">🔗 Salin Link</span>
                 </div>
             </div>
         </div>
@@ -261,28 +270,28 @@
                 <img src="images/SKT-003.jpg" alt="Puitis reflektif tentang figur/keheningan batin" loading="lazy">
             </div>
             <div class="card-body">
-                <h3 class="card-title trans-title">Puitis reflektif tentang figur/keheningan batin</h3>
-                <div class="card-meta"><span class="trans-size">29.7 cm x 42 cm</span> • <span class="trans-media">Tinta di atas kertas</span></div>
+                <h3 class="card-title">Puitis reflektif tentang figur/keheningan batin</h3>
+                <div class="card-meta"><span>29.7 cm x 42 cm</span> • <span>Tinta di atas kertas</span></div>
                 <div class="card-price-row">
                     <div>
-                        <div class="price-label trans-orig">Karya Original</div>
+                        <div class="price-label">Karya Original</div>
                         <div class="price-val">$100</div>
                     </div>
                     <div style="text-align: right;">
-                        <div class="price-label trans-ship">Pengiriman</div>
-                        <div class="shipping-val trans-free">Bebas Ongkir</div>
+                        <div class="price-label">Pengiriman</div>
+                        <div class="shipping-val">Bebas Ongkir</div>
                     </div>
                 </div>
                 <div class="card-actions">
                     <a href="https://ig.me/m/maruto.septriono?text=Halo%20Mas%20Maruto,%20saya%20tertarik%20dengan%20karya%20SKT-003%20di%20Vercel" target="_blank" class="btn-action btn-dm">✉ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-003%20-%20Puitis reflektif tentang figur/keheningan batin&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-003%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-003" class="btn-action btn-email trans-buy">✉ Beli via Email</a>
+                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-003%20-%20Puitis reflektif tentang figur/keheningan batin&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-003%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-003" class="btn-action btn-email">✉ Beli via Email</a>
                 </div>
-                <div class="statement-box trans-stmt">
+                <div class="statement-box">
                     "Seniman mengungkapkan bahwa gestur hening dan tarikan garis ini mencerminkan ketenangan dalam pikiran, dengan setiap titik tinta yang membentuk bentuk tubuh yang terus bergerak, menyerap kekuatan dari alam semesta. Ini adalah karya yang menggambarkan perjalanan hati dan jiwa yang tidak bisa dijelaskan secara langsung."
                 </div>
                 <div class="card-footer-links">
-                    <span class="btn-kuratorial trans-kur-btn" onclick="bukaModalKuratorial('SKT-003', 'Puitis reflektif tentang figur/keheningan batin', 'Seniman mengungkapkan bahwa gestur hening dan tarikan garis ini mencerminkan ketenangan dalam pikiran, dengan setiap titik tinta yang membentuk bentuk tubuh yang terus bergerak, menyerap kekuatan dari alam semesta. Ini adalah karya yang menggambarkan perjalanan hati dan jiwa yang tidak bisa dijelaskan secara langsung.', 'Karya ini memperlihatkan figur dalam posisi berdiri dengan tubuh bersila, menciptakan ruang kosong yang mendalam di sekitarnya. Garis-garis tinta yang ekspresif menggambarkan bentuk tubuh yang menyerupai kehidupan yang terus bergerak dan mungkin sedang menyimpan suara dalam hati. Ruang kosong di sekelilingnya menjadi ruang untuk perasaan, membangun koneksi antara figur dengan lingkungan. Karya ini menggambarkan resonansi emosional yang mendalam dari keheningan batin dan ketenangan yang terjadi saat seseorang berada dalam proses refleksi.')">Kuratorial &rsaquo;</span>
-                    <span class="btn-copy-link trans-copy-btn" onclick="salinLink('SKT-003')">🔗 Salin Link</span>
+                    <span class="btn-kuratorial" onclick="bukaModalKuratorial('SKT-003', 'Puitis reflektif tentang figur/keheningan batin', 'Seniman mengungkapkan bahwa gestur hening dan tarikan garis ini mencerminkan ketenangan dalam pikiran, dengan setiap titik tinta yang membentuk bentuk tubuh yang terus bergerak, menyerap kekuatan dari alam semesta. Ini adalah karya yang menggambarkan perjalanan hati dan jiwa yang tidak bisa dijelaskan secara langsung.', 'Karya ini memperlihatkan figur dalam posisi berdiri dengan tubuh bersila, menciptakan ruang kosong yang mendalam di sekitarnya. Garis-garis tinta yang ekspresif menggambarkan bentuk tubuh yang menyerupai kehidupan yang terus bergerak dan mungkin sedang menyimpan suara dalam hati. Ruang kosong di sekelilingnya menjadi ruang untuk perasaan, membangun koneksi antara figur dengan lingkungan. Karya ini menggambarkan resonansi emosional yang mendalam dari keheningan batin dan ketenangan yang terjadi saat seseorang berada dalam proses refleksi.')">Kuratorial &rsaquo;</span>
+                    <span class="btn-copy-link" onclick="salinLink('SKT-003')">🔗 Salin Link</span>
                 </div>
             </div>
         </div>
@@ -295,28 +304,28 @@
                 <img src="images/SKT-002.jpg" alt="Kerusakan dalam Perjalanan" loading="lazy">
             </div>
             <div class="card-body">
-                <h3 class="card-title trans-title">Kerusakan dalam Perjalanan</h3>
-                <div class="card-meta"><span class="trans-size">29,7 cm x 42 cm</span> • <span class="trans-media">Tinta di atas kertas</span></div>
+                <h3 class="card-title">Kerusakan dalam Perjalanan</h3>
+                <div class="card-meta"><span>29,7 cm x 42 cm</span> • <span>Tinta di atas kertas</span></div>
                 <div class="card-price-row">
                     <div>
-                        <div class="price-label trans-orig">Karya Original</div>
+                        <div class="price-label">Karya Original</div>
                         <div class="price-val">$100</div>
                     </div>
                     <div style="text-align: right;">
-                        <div class="price-label trans-ship">Pengiriman</div>
-                        <div class="shipping-val trans-free">Bebas Ongkir</div>
+                        <div class="price-label">Pengiriman</div>
+                        <div class="shipping-val">Bebas Ongkir</div>
                     </div>
                 </div>
                 <div class="card-actions">
                     <a href="https://ig.me/m/maruto.septriono?text=Halo%20Mas%20Maruto,%20saya%20tertarik%20dengan%20karya%20SKT-002%20di%20Vercel" target="_blank" class="btn-action btn-dm">✉ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-002%20-%20Kerusakan dalam Perjalanan&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-002%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-002" class="btn-action btn-email trans-buy">✉ Beli via Email</a>
+                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-002%20-%20Kerusakan dalam Perjalanan&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-002%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-002" class="btn-action btn-email">✉ Beli via Email</a>
                 </div>
-                <div class="statement-box trans-stmt">
+                <div class="statement-box">
                     "1-2 Berdasarkan bentuk visual ini, karya ini menggambarkan keadaan yang sedang terjadi di luar ruangan, dengan fokus pada ketidakstabilan dan perubahan. Dalam gambar ini, garis-garis yang digunakan tidak hanya membentuk bentuk objek tetapi juga menciptakan dinamika waktu dan ruang, menggambarkan proses berhenti atau tindak lanjut dari suatu keadaan."
                 </div>
                 <div class="card-footer-links">
-                    <span class="btn-kuratorial trans-kur-btn" onclick="bukaModalKuratorial('SKT-002', 'Kerusakan dalam Perjalanan', '1-2 Berdasarkan bentuk visual ini, karya ini menggambarkan keadaan yang sedang terjadi di luar ruangan, dengan fokus pada ketidakstabilan dan perubahan. Dalam gambar ini, garis-garis yang digunakan tidak hanya membentuk bentuk objek tetapi juga menciptakan dinamika waktu dan ruang, menggambarkan proses berhenti atau tindak lanjut dari suatu keadaan.', 'Karya ini menggunakan garis-garis yang sangat berbeda dalam gaya dan bentuknya. Garis-garis yang digunakan memiliki variasi tinggi, membangun struktur dari benda-benda di atas kertas. Dari sudut pandang artistik, gambar ini menggambarkan ketidakstabilan dan perubahan secara visual melalui gerakan garis yang tidak teratur. Karena itu, bentuk objek dalam karya ini menjadi anatomi dari keadaan yang sedang berlangsung. Dalam konteks ekspresi emosional, gambar ini menggambarkan proses perubahan dan ketidakstabilan yang sedang terjadi di luar ruangan.')">Kuratorial &rsaquo;</span>
-                    <span class="btn-copy-link trans-copy-btn" onclick="salinLink('SKT-002')">🔗 Salin Link</span>
+                    <span class="btn-kuratorial" onclick="bukaModalKuratorial('SKT-002', 'Kerusakan dalam Perjalanan', '1-2 Berdasarkan bentuk visual ini, karya ini menggambarkan keadaan yang sedang terjadi di luar ruangan, dengan fokus pada ketidakstabilan dan perubahan. Dalam gambar ini, garis-garis yang digunakan tidak hanya membentuk bentuk objek tetapi juga menciptakan dinamika waktu dan ruang, menggambarkan proses berhenti atau tindak lanjut dari suatu keadaan.', 'Karya ini menggunakan garis-garis yang sangat berbeda dalam gaya dan bentuknya. Garis-garis yang digunakan memiliki variasi tinggi, membangun struktur dari benda-benda di atas kertas. Dari sudut pandang artistik, gambar ini menggambarkan ketidakstabilan dan perubahan secara visual melalui gerakan garis yang tidak teratur. Karena itu, bentuk objek dalam karya ini menjadi anatomi dari keadaan yang sedang berlangsung. Dalam konteks ekspresi emosional, gambar ini menggambarkan proses perubahan dan ketidakstabilan yang sedang terjadi di luar ruangan.')">Kuratorial &rsaquo;</span>
+                    <span class="btn-copy-link" onclick="salinLink('SKT-002')">🔗 Salin Link</span>
                 </div>
             </div>
         </div>
@@ -329,28 +338,28 @@
                 <img src="images/SKT-001.jpg" alt="Kesadaran di Tangan" loading="lazy">
             </div>
             <div class="card-body">
-                <h3 class="card-title trans-title">Kesadaran di Tangan</h3>
-                <div class="card-meta"><span class="trans-size">29.7 cm x 42 cm</span> • <span class="trans-media">Tinta di atas kertas</span></div>
+                <h3 class="card-title">Kesadaran di Tangan</h3>
+                <div class="card-meta"><span>29.7 cm x 42 cm</span> • <span>Tinta di atas kertas</span></div>
                 <div class="card-price-row">
                     <div>
-                        <div class="price-label trans-orig">Karya Original</div>
+                        <div class="price-label">Karya Original</div>
                         <div class="price-val">$100</div>
                     </div>
                     <div style="text-align: right;">
-                        <div class="price-label trans-ship">Pengiriman</div>
-                        <div class="shipping-val trans-free">Bebas Ongkir</div>
+                        <div class="price-label">Pengiriman</div>
+                        <div class="shipping-val">Bebas Ongkir</div>
                     </div>
                 </div>
                 <div class="card-actions">
                     <a href="https://ig.me/m/maruto.septriono?text=Halo%20Mas%20Maruto,%20saya%20tertarik%20dengan%20karya%20SKT-001%20di%20Vercel" target="_blank" class="btn-action btn-dm">✉ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-001%20-%20Kesadaran di Tangan&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-001%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-001" class="btn-action btn-email trans-buy">✉ Beli via Email</a>
+                    <a href="mailto:kirimdoa@gmail.com?subject=[VERCEL%20INQUIRY]%20Sketsa%20SKT-001%20-%20Kesadaran di Tangan&body=Halo%20Maruto%20Septriono,%0D%0ASaya%20tertarik%20dengan%20karya%20SKT-001%20di%20katalog-sketsa-maruto.vercel.app/%23SKT-001" class="btn-action btn-email">✉ Beli via Email</a>
                 </div>
-                <div class="statement-box trans-stmt">
+                <div class="statement-box">
                     "Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan."
                 </div>
                 <div class="card-footer-links">
-                    <span class="btn-kuratorial trans-kur-btn" onclick="bukaModalKuratorial('SKT-001', 'Kesadaran di Tangan', 'Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan.', 'Garis-garis tinta yang digunakan dalam karya ini membentuk sebuah struktur visual yang dinamis, menunjukkan gerakan dan kekuatan dari bentuk-bentuk yang terbentuk. Kontras antara gelap dan terang menciptakan ruang yang mendalam, menggambarkan ketenangan yang tidak pernah berhenti di tengah keterbatasan. Komposisi ini menyoroti hubungan antara objek dengan ruang sekitarnya, serta menunjukkan bahwa bentuk-bentuk itu bukan hanya bentuk fisik, tetapi juga representasi dari perasaan dan kehidupan yang sedang berlangsung.')">Kuratorial &rsaquo;</span>
-                    <span class="btn-copy-link trans-copy-btn" onclick="salinLink('SKT-001')">🔗 Salin Link</span>
+                    <span class="btn-kuratorial" onclick="bukaModalKuratorial('SKT-001', 'Kesadaran di Tangan', 'Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan.', 'Garis-garis tinta yang digunakan dalam karya ini membentuk sebuah struktur visual yang dinamis, menunjukkan gerakan dan kekuatan dari bentuk-bentuk yang terbentuk. Kontras antara gelap dan terang menciptakan ruang yang mendalam, menggambarkan ketenangan yang tidak pernah berhenti di tengah keterbatasan. Komposisi ini menyoroti hubungan antara objek dengan ruang sekitarnya, serta menunjukkan bahwa bentuk-bentuk itu bukan hanya bentuk fisik, tetapi juga representasi dari perasaan dan kehidupan yang sedang berlangsung.')">Kuratorial &rsaquo;</span>
+                    <span class="btn-copy-link" onclick="salinLink('SKT-001')">🔗 Salin Link</span>
                 </div>
             </div>
         </div>
@@ -370,7 +379,7 @@
             </div>
             <div id="stTable" style="margin-top:10px;"></div>
             <div style="margin-top:15px; text-align:right;">
-                <button onclick="tutupModal('modalStats')" style="background:#238636; border:none; color:#fff; padding:6px 16px; border-radius:6px; cursor:pointer;" id="btn-tutup-stat">Tutup</button>
+                <button onclick="tutupModal('modalStats')" style="background:#238636; border:none; color:#fff; padding:6px 16px; border-radius:6px; cursor:pointer;">Tutup</button>
             </div>
         </div>
     </div>
@@ -384,71 +393,37 @@
             <div id="kurStatement" style="font-style:italic; border-left:2px solid #58a6ff; padding-left:10px; margin-bottom:12px; color:#c9d1d9; font-size:0.85rem;"></div>
             <div id="kurText" style="line-height:1.5; font-size:0.88rem; color:#e6edf3; max-height:50vh; overflow-y:auto;"></div>
             <div style="margin-top:15px; text-align:right;">
-                <button onclick="tutupModal('modalKuratorial')" style="background:#30363d; border:none; color:#fff; padding:6px 16px; border-radius:6px; cursor:pointer;" id="btn-tutup-kur">Tutup</button>
+                <button onclick="tutupModal('modalKuratorial')" style="background:#30363d; border:none; color:#fff; padding:6px 16px; border-radius:6px; cursor:pointer;">Tutup</button>
             </div>
         </div>
     </div>
 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'id',
+                includedLanguages: 'id,en',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script>
-        let currentLang = 'id';
-
-        const dict = {
-            id: {
-                title: "Katalog Sketsa Maruto Septriono",
-                sub: "Arsip Studi Bentuk, Garis Spontan & Gambar Tangan Orisinal",
-                arsip: "Karya Terarsip:",
-                unit: "Sketsa",
-                vis: "Total Pengunjung:",
-                fol: "Pengikut:",
-                orig: "Karya Original",
-                ship: "Pengiriman",
-                free: "Bebas Ongkir",
-                buy: "✉ Beli via Email",
-                kurBtn: "Kuratorial ›",
-                copyBtn: "🔗 Salin Link",
-                tutup: "Tutup",
-                media: "Tinta di atas kertas"
-            },
-            en: {
-                title: "Maruto Septriono Sketch Catalog",
-                sub: "Archive of Form Studies, Spontaneous Lines & Original Drawings",
-                arsip: "Archived Works:",
-                unit: "Sketches",
-                vis: "Total Visitors:",
-                fol: "Followers:",
-                orig: "Original Work",
-                ship: "Shipping",
-                free: "Free Worldwide",
-                buy: "✉ Purchase via Email",
-                kurBtn: "Curatorial ›",
-                copyBtn: "🔗 Copy Link",
-                tutup: "Close",
-                media: "Ink on paper"
-            }
-        };
-
-        function setLanguage(lang) {
-            currentLang = lang;
+        function gantiBahasa(lang) {
             document.getElementById('btn-id').classList.toggle('active', lang === 'id');
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
-            const t = dict[lang];
-            document.getElementById('hdr-title').innerText = t.title;
-            document.getElementById('hdr-sub').innerText = t.sub;
-            document.getElementById('lbl-arsip').innerText = t.arsip;
-            document.getElementById('lbl-unit').innerText = t.unit;
-            document.getElementById('lbl-vis').innerText = t.vis;
-            document.getElementById('lbl-fol').innerText = t.fol;
-            document.getElementById('btn-tutup-stat').innerText = t.tutup;
-            document.getElementById('btn-tutup-kur').innerText = t.tutup;
-
-            document.querySelectorAll('.trans-orig').forEach(el => el.innerText = t.orig);
-            document.querySelectorAll('.trans-ship').forEach(el => el.innerText = t.ship);
-            document.querySelectorAll('.trans-free').forEach(el => el.innerText = t.free);
-            document.querySelectorAll('.trans-buy').forEach(el => el.innerText = t.buy);
-            document.querySelectorAll('.trans-kur-btn').forEach(el => el.innerText = t.kurBtn);
-            document.querySelectorAll('.trans-copy-btn').forEach(el => el.innerText = t.copyBtn);
-            document.querySelectorAll('.trans-media').forEach(el => el.innerText = t.media);
+            var selectEl = document.querySelector('select.goog-te-combo');
+            if (selectEl) {
+                selectEl.value = lang;
+                selectEl.dispatchEvent(new Event('change'));
+            } else {
+                // Fallback cookie translate
+                document.cookie = "googtrans=/id/" + lang + "; path=/";
+                document.cookie = "googtrans=/id/" + lang + "; domain=" + window.location.hostname + "; path=/";
+                window.location.reload();
+            }
         }
 
         const statsData = {
@@ -504,7 +479,7 @@
 
         function bukaModalKuratorial(id, title, stmt, kur) {
             document.getElementById('kurTitle').innerText = title;
-            document.getElementById('kurMeta').innerText = (currentLang === 'en' ? "Archive Code: " : "Kode Arsip: ") + id;
+            document.getElementById('kurMeta').innerText = "Kode Arsip: " + id;
             document.getElementById('kurStatement').innerText = '"' + stmt + '"';
             document.getElementById('kurText').innerText = kur;
             document.getElementById('modalKuratorial').style.display = 'flex';
@@ -517,8 +492,7 @@
         function salinLink(id) {
             const url = window.location.origin + window.location.pathname + "#" + id;
             navigator.clipboard.writeText(url).then(function() {
-                var msg = (currentLang === 'en') ? ("Link for " + id + " copied!") : ("Link karya " + id + " berhasil disalin!");
-                alert(msg);
+                alert("Link karya " + id + " berhasil disalin!");
             });
         }
 
@@ -526,122 +500,5 @@
             if (e.target.classList.contains('modal')) e.target.style.display = 'none';
         }
     </script>
-
-    <script>
-        // Kamus glosarium kuratorial & seni rupa
-        const artGlossary = [
-            ["tinta di atas kertas", "ink on paper"],
-            ["karya ini menggambarkan", "this artwork portrays"],
-            ["karya ini menampilkan", "this work presents"],
-            ["karya ini menyoroti", "this piece highlights"],
-            ["sebuah adegan sehari-hari", "an everyday scene"],
-            ["di lingkungan perkotaan", "in an urban environment"],
-            ["gaya sketsa yang dinamis", "a dynamic sketch style"],
-            ["figur manusia terlihat sedang", "human figures are seen"],
-            ["duduk di depan mobil", "sitting in front of a car"],
-            ["menciptakan kesan kehidupan", "creating a sense of life"],
-            ["penuh dengan aktivitas", "filled with activity"],
-            ["garis kontur yang kuat dan tebal", "strong and bold contour lines"],
-            ["elemen arsir yang mendalam", "deep hatching elements"],
-            ["tekstur ruang lingkungan yang padat", "the texture of a dense urban space"],
-            ["komposisi bidang menarik perhatian", "the composition draws attention"],
-            ["dari bagian atas gambar ke bawah", "from the top of the image to the bottom"],
-            ["menciptakan kesan kedalaman", "creating a sense of depth"],
-            ["efek jarak dan kontras tinggi", "distance effects and high contrast"],
-            ["antara objek-objek di depan dan latar belakang", "between foreground objects and background"],
-            ["suasana kota yang hidup", "a vibrant city atmosphere"],
-            ["bagi saya,", "for me,"],
-            ["di balik tarikan tinta ini tersimpan", "behind these ink strokes lies"],
-            ["keheningan batin yang membeku", "a frozen inner silence"],
-            ["keheningan", "silence"],
-            ["tarikan garis spontan", "spontaneous line strokes"],
-            ["percakapan batin", "inner dialogue"],
-            ["dinamika ruang", "spatial dynamics"],
-            ["ruang hening", "quiet space"],
-            ["denyut kota", "urban pulse"],
-            ["bergerak cepat", "moving rapidly"],
-            ["perenungan batin", "inner contemplation"],
-            ["kepungan bentuk", "siege of forms"],
-            ["keterbatasan", "boundaries"],
-            ["kondisi yang tidak pernah berhenti", "a perpetual state"],
-            ["rumah di tengah kota", "house in the middle of the city"],
-            ["hening di jalan", "silence on the road"],
-            ["hening di kota", "silence in the city"],
-            ["dinamika perkotaan", "urban dynamics"],
-            ["ruang kota", "city space"],
-            ["jejak garis ruang", "traces of spatial lines"]
-        ];
-
-        function translateArtText(text, toLang) {
-            if (!text) return "";
-            if (toLang === 'id') return text;
-            
-            let res = text;
-            artGlossary.forEach(([idTerm, enTerm]) => {
-                const regex = new RegExp(idTerm, "gi");
-                res = res.replace(regex, enTerm);
-            });
-            return res;
-        }
-
-        // Simpan teks asli ID saat pertama kali halaman dimuat
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll('.trans-stmt').forEach(el => {
-                if (!el.getAttribute('data-orig')) {
-                    el.setAttribute('data-orig', el.innerText.trim());
-                }
-            });
-            document.querySelectorAll('.trans-title').forEach(el => {
-                if (!el.getAttribute('data-orig')) {
-                    el.setAttribute('data-orig', el.innerText.trim());
-                }
-            });
-        });
-
-        // Modifikasi fungsi setLanguage agar teks statement dan judul ikut berubah
-        const originalSetLanguage = window.setLanguage;
-        window.setLanguage = function(lang) {
-            if (typeof originalSetLanguage === "function") {
-                originalSetLanguage(lang);
-            }
-
-            // Terjemahkan seluruh kotak Statement Seniman di kartu
-            document.querySelectorAll('.trans-stmt').forEach(el => {
-                const orig = el.getAttribute('data-orig') || el.innerText.trim();
-                if (lang === 'en') {
-                    const clean = orig.replace(/^"|"$/g, '');
-                    el.innerText = '"' + translateArtText(clean, 'en') + '"';
-                } else {
-                    el.innerText = orig;
-                }
-            });
-
-            // Terjemahkan Judul Karya di kartu
-            document.querySelectorAll('.trans-title').forEach(el => {
-                const orig = el.getAttribute('data-orig') || el.innerText.trim();
-                el.innerText = (lang === 'en') ? translateArtText(orig, 'en') : orig;
-            });
-        };
-
-        // Modifikasi fungsi bukaModalKuratorial agar teks di dalam popup modal otomatis terjemah
-        const originalBukaModalKuratorial = window.bukaModalKuratorial;
-        window.bukaModalKuratorial = function(id, title, stmt, kur) {
-            if (currentLang === 'en') {
-                title = translateArtText(title, 'en');
-                stmt = translateArtText(stmt, 'en');
-                kur = translateArtText(kur, 'en');
-            }
-            if (typeof originalBukaModalKuratorial === "function") {
-                originalBukaModalKuratorial(id, title, stmt, kur);
-            } else {
-                document.getElementById('kurTitle').innerText = title;
-                document.getElementById('kurMeta').innerText = (currentLang === 'en' ? "Archive Code: " : "Kode Arsip: ") + id;
-                document.getElementById('kurStatement').innerText = '"' + stmt + '"';
-                document.getElementById('kurText').innerText = kur;
-                document.getElementById('modalKuratorial').style.display = 'flex';
-            }
-        };
-    </script>
-
 </body>
 </html>
