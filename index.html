@@ -107,55 +107,6 @@
             .modal-img-wrap { height: 260px; }
             .modal-details { padding: 15px; }
         }
-    
-        /* GAYA TOMBOL KLIK STATISTIK */
-        .stat-badge.clickable {
-            cursor: pointer;
-            transition: all 0.2s ease;
-            user-select: none;
-        }
-        .stat-badge.clickable:hover {
-            border-color: #38bdf8;
-            background: rgba(56, 189, 248, 0.15);
-            transform: translateY(-2px);
-        }
-        .stat-badge.clickable:active {
-            transform: translateY(0);
-        }
-        .stats-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 12px;
-            font-size: 0.85rem;
-        }
-        .stats-table th {
-            text-align: left;
-            padding: 8px 10px;
-            border-bottom: 2px solid #30363d;
-            color: #8b949e;
-            font-weight: 600;
-        }
-        .stats-table td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #21262d;
-            color: #e6edf3;
-        }
-        .stats-table tr:hover td {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        .stats-progress-bar {
-            height: 6px;
-            background: #21262d;
-            border-radius: 3px;
-            overflow: hidden;
-            margin-top: 4px;
-        }
-        .stats-progress-fill {
-            height: 100%;
-            background: #38bdf8;
-            border-radius: 3px;
-        }
-
     </style>
 </head>
 <body>
@@ -172,19 +123,41 @@
         <h1>Katalog Sketsa Maruto Septriono</h1>
         <p>Arsip Studi Bentuk, Garis Spontan &amp; Gambar Tangan Orisinal</p>
         
-                <div class="stats-bar">
-            <div class="stat-badge">Karya Terarsip: <strong>6 Sketsa</strong></div>
-            <div class="stat-badge clickable" onclick="openStatsModal('visitors')" title="Klik untuk rincian negara pengunjung">
-                Total Pengunjung: <strong id="visitorCount">1,482</strong> 📊
-            </div>
-            <div class="stat-badge clickable" onclick="openStatsModal('followers')" title="Klik untuk rincian negara pengikut">
-                Pengikut: <strong id="followerCount">630+</strong> 👥
-            </div>
+        <div class="stats-bar">
+            <div class="stat-badge">Karya Terarsip: <strong>7 Sketsa</strong></div>
+            <div class="stat-badge">Total Pengunjung: <strong id="visitorCount">1,482</strong></div>
+            <div class="stat-badge">Pengikut: <strong id="followerCount">630+</strong></div>
         </div>
     </div>
 
     <div class="gallery-grid">
         
+    <div class="card" id="card-SKT-007" data-id="SKT-007">
+        <div class="img-container" onclick="openModal('SKT-007')">
+            <span class="badge badge-id">SKT-007</span>
+            <span class="badge badge-year">2026</span>
+            <img src="images/SKT-007.jpg" alt="Hening Jalan" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x500/161b22/888?text=SKT-007';"/>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title" onclick="openModal('SKT-007')">Hening Jalan</h3>
+            <p class="card-meta">29.7 cm x 42 cm • Tinta di atas kertas</p>
+            <div class="pricing-box">
+                <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
+                <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
+            </div>
+            <div class="contact-actions">
+                <a href="https://ig.me/m/maruto.septriono?text=Halo%20Mas%20Maruto,%20saya%20melihat%20karya%20Anda%20di%20katalog-sketsa-maruto.vercel.app" target="_blank" class="btn btn-dm">✉️ DM</a>
+                <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-007%20-%20Hening Jalan" class="btn btn-email">✉️ Beli via Email</a>
+            </div>
+            <p class="statement">"Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya."</p>
+            <div class="card-footer-action">
+                <button class="btn-kuratorial" onclick="openModal('SKT-007')">Kuratorial ›</button>
+                <button class="btn-direct-link" onclick="copyDirectLink('SKT-007', event)" title="Salin Tautan Langsung">🔗 Salin Link</button>
+            </div>
+        </div>
+    </div>
+    
+
     <div class="card" id="card-SKT-006" data-id="SKT-006">
         <div class="img-container" onclick="openModal('SKT-006')">
             <span class="badge badge-id">SKT-006</span>
@@ -374,7 +347,7 @@
 
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
     <script>
-        const catalogData = [{"ID": "SKT-003", "Judul": "Puitis reflektif tentang figur/keheningan batin", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "artist_statement_id": "Seniman mengungkapkan bahwa gestur hening dan tarikan garis ini mencerminkan ketenangan dalam pikiran, dengan setiap titik tinta yang membentuk bentuk tubuh yang terus bergerak, menyerap kekuatan dari alam semesta. Ini adalah karya yang menggambarkan perjalanan hati dan jiwa yang tidak bisa dijelaskan secara langsung.", "deskripsi_kuratorial": "Karya ini memperlihatkan figur dalam posisi berdiri dengan tubuh bersila, menciptakan ruang kosong yang mendalam di sekitarnya. Garis-garis tinta yang ekspresif menggambarkan bentuk tubuh yang menyerupai kehidupan yang terus bergerak dan mungkin sedang menyimpan suara dalam hati. Ruang kosong di sekelilingnya menjadi ruang untuk perasaan, membangun koneksi antara figur dengan lingkungan. Karya ini menggambarkan resonansi emosional yang mendalam dari keheningan batin dan ketenangan yang terjadi saat seseorang berada dalam proses refleksi.", "tags": "sketch, inkdrawing, figurativedrawing, contemplation, marutoseptriono"}, {"ID": "SKT-002", "Judul": "Kerusakan dalam Perjalanan", "Tahun": "2026", "Ukuran": "29,7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-002 - Hening di Antara Kebutuhan.jpg", "web_image": "SKT-002.jpg", "artist_statement_id": "1-2 Berdasarkan bentuk visual ini, karya ini menggambarkan keadaan yang sedang terjadi di luar ruangan, dengan fokus pada ketidakstabilan dan perubahan. Dalam gambar ini, garis-garis yang digunakan tidak hanya membentuk bentuk objek tetapi juga menciptakan dinamika waktu dan ruang, menggambarkan proses berhenti atau tindak lanjut dari suatu keadaan.", "deskripsi_kuratorial": "Karya ini menggunakan garis-garis yang sangat berbeda dalam gaya dan bentuknya. Garis-garis yang digunakan memiliki variasi tinggi, membangun struktur dari benda-benda di atas kertas. Dari sudut pandang artistik, gambar ini menggambarkan ketidakstabilan dan perubahan secara visual melalui gerakan garis yang tidak teratur. Karena itu, bentuk objek dalam karya ini menjadi anatomi dari keadaan yang sedang berlangsung. Dalam konteks ekspresi emosional, gambar ini menggambarkan proses perubahan dan ketidakstabilan yang sedang terjadi di luar ruangan.", "tags": "sketch, drawing, inkdrawing, contemporaryart, darkart, indonesianartist, marutoseptriono"}, {"ID": "SKT-001", "Judul": "Kesadaran di Tangan", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-001 - Kesadaran di Tangan.jpg", "web_image": "SKT-001.jpg", "artist_statement_id": "Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan.", "deskripsi_kuratorial": "Garis-garis tinta yang digunakan dalam karya ini membentuk sebuah struktur visual yang dinamis, menunjukkan gerakan dan kekuatan dari bentuk-bentuk yang terbentuk. Kontras antara gelap dan terang menciptakan ruang yang mendalam, menggambarkan ketenangan yang tidak pernah berhenti di tengah keterbatasan. Komposisi ini menyoroti hubungan antara objek dengan ruang sekitarnya, serta menunjukkan bahwa bentuk-bentuk itu bukan hanya bentuk fisik, tetapi juga representasi dari perasaan dan kehidupan yang sedang berlangsung.", "tags": "sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono"}, {"ID": "SKT-004", "Judul": "Kerja di Hening", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-004 - Kerja di Hening.jpg", "web_image": "SKT-004.jpg", "artist_statement_id": "Dalam setiap garis yang menyebar, terdapat sebuah ruang kosong yang tidak pernah selesai. Karya ini bukan hanya menggambarkan, tetapi menciptakan ruang yang menyimpan waktu dan kehadiran.", "deskripsi_kuratorial": "Garis-garis tinta yang ditarik secara dinamis membentuk sebuah kota yang terjaga dalam hening. Kontras antara gelap dan terang menunjukkan perbedaan dalam bentuk, namun juga menggambarkan kehadiran dari ruang yang tidak diisi. Komposisi ini menciptakan suasana yang tenang, seperti waktu yang bergerak dalam keadaan diam.", "tags": "sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono"}, {"ID": "SKT-005", "Judul": "Hening di Kota", "Tahun": 2026, "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-005 - Hening di Kota.jpg", "web_image": "SKT-005.jpg", "artist_statement_id": "Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya.", "deskripsi_kuratorial": "Gambar ini menggambarkan sebuah suasana perkotaan yang dipenuhi oleh kekuatan gerak dan hening. Komposisi bidang menggunakan garis kontur yang dinamis dan terbentuk dari berbagai elemen, menciptakan ruang yang saling bertabrakan dan menyerap. Ketebalan tinta menggambarkan kontras antara bentuk gelap dan terang secara visual, memberikan kesan kedalaman pada karya. Elemen-elemen dalam gambar tidak hanya memiliki bentuk yang jelas tetapi juga terhubung dengan satu pola kekuatan, menunjukkan bahwa makna di balik karya ini adalah tentang pergerakan yang terus-menerus dan hening yang mendalam.", "tags": "sketch, drawing, inkdrawing, urbansketch, marutoseptriono"}, {"ID": "SKT-006", "Judul": "Hening di Kota", "Tahun": 2026, "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-006 - Hening di Kota.jpg", "web_image": "SKT-006.jpg", "artist_statement_id": "Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya.", "deskripsi_kuratorial": "Gambar ini menggambarkan sebuah adegan yang terjebak dalam keheningan, dengan bentuk-bentuk tangan dan tubuh yang dibuat dari garis kontur yang kuat dan tebal. Komposisi bidang menunjukkan perpaduan antara objek-objek gelap dan ruang yang luas, menciptakan kontras yang mendalam. Ruang heningnya di dalam gambar terbentuk oleh pola-pola garis yang menggambarkan keberadaan di luar, membangun suasana yang mungkin sedang berlangsung. Dari segi teknik, keterbatasan dan ketebalan dari tinta menciptakan kesan yang mendalam, menekankan perbedaan antara bentuk-bentuk yang terlihat dan yang tidak terlihat. Karya ini menggambarkan pemandangan yang dihiasi oleh keheningan, yang merupakan hasil dari gerak yang tidak terlalu terjadi, dan membangun persepsi tentang makna dalam ruang yang luas.", "tags": "sketch, drawing, inkdrawing, urbansketch, marutoseptriono"}];
+        const catalogData = [{"ID": "SKT-003", "Judul": "Puitis reflektif tentang figur/keheningan batin", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "artist_statement_id": "Seniman mengungkapkan bahwa gestur hening dan tarikan garis ini mencerminkan ketenangan dalam pikiran, dengan setiap titik tinta yang membentuk bentuk tubuh yang terus bergerak, menyerap kekuatan dari alam semesta. Ini adalah karya yang menggambarkan perjalanan hati dan jiwa yang tidak bisa dijelaskan secara langsung.", "deskripsi_kuratorial": "Karya ini memperlihatkan figur dalam posisi berdiri dengan tubuh bersila, menciptakan ruang kosong yang mendalam di sekitarnya. Garis-garis tinta yang ekspresif menggambarkan bentuk tubuh yang menyerupai kehidupan yang terus bergerak dan mungkin sedang menyimpan suara dalam hati. Ruang kosong di sekelilingnya menjadi ruang untuk perasaan, membangun koneksi antara figur dengan lingkungan. Karya ini menggambarkan resonansi emosional yang mendalam dari keheningan batin dan ketenangan yang terjadi saat seseorang berada dalam proses refleksi.", "tags": "sketch, inkdrawing, figurativedrawing, contemplation, marutoseptriono"}, {"ID": "SKT-002", "Judul": "Kerusakan dalam Perjalanan", "Tahun": "2026", "Ukuran": "29,7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-002 - Hening di Antara Kebutuhan.jpg", "web_image": "SKT-002.jpg", "artist_statement_id": "1-2 Berdasarkan bentuk visual ini, karya ini menggambarkan keadaan yang sedang terjadi di luar ruangan, dengan fokus pada ketidakstabilan dan perubahan. Dalam gambar ini, garis-garis yang digunakan tidak hanya membentuk bentuk objek tetapi juga menciptakan dinamika waktu dan ruang, menggambarkan proses berhenti atau tindak lanjut dari suatu keadaan.", "deskripsi_kuratorial": "Karya ini menggunakan garis-garis yang sangat berbeda dalam gaya dan bentuknya. Garis-garis yang digunakan memiliki variasi tinggi, membangun struktur dari benda-benda di atas kertas. Dari sudut pandang artistik, gambar ini menggambarkan ketidakstabilan dan perubahan secara visual melalui gerakan garis yang tidak teratur. Karena itu, bentuk objek dalam karya ini menjadi anatomi dari keadaan yang sedang berlangsung. Dalam konteks ekspresi emosional, gambar ini menggambarkan proses perubahan dan ketidakstabilan yang sedang terjadi di luar ruangan.", "tags": "sketch, drawing, inkdrawing, contemporaryart, darkart, indonesianartist, marutoseptriono"}, {"ID": "SKT-001", "Judul": "Kesadaran di Tangan", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-001 - Kesadaran di Tangan.jpg", "web_image": "SKT-001.jpg", "artist_statement_id": "Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan.", "deskripsi_kuratorial": "Garis-garis tinta yang digunakan dalam karya ini membentuk sebuah struktur visual yang dinamis, menunjukkan gerakan dan kekuatan dari bentuk-bentuk yang terbentuk. Kontras antara gelap dan terang menciptakan ruang yang mendalam, menggambarkan ketenangan yang tidak pernah berhenti di tengah keterbatasan. Komposisi ini menyoroti hubungan antara objek dengan ruang sekitarnya, serta menunjukkan bahwa bentuk-bentuk itu bukan hanya bentuk fisik, tetapi juga representasi dari perasaan dan kehidupan yang sedang berlangsung.", "tags": "sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono"}, {"ID": "SKT-004", "Judul": "Kerja di Hening", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-004 - Kerja di Hening.jpg", "web_image": "SKT-004.jpg", "artist_statement_id": "Dalam setiap garis yang menyebar, terdapat sebuah ruang kosong yang tidak pernah selesai. Karya ini bukan hanya menggambarkan, tetapi menciptakan ruang yang menyimpan waktu dan kehadiran.", "deskripsi_kuratorial": "Garis-garis tinta yang ditarik secara dinamis membentuk sebuah kota yang terjaga dalam hening. Kontras antara gelap dan terang menunjukkan perbedaan dalam bentuk, namun juga menggambarkan kehadiran dari ruang yang tidak diisi. Komposisi ini menciptakan suasana yang tenang, seperti waktu yang bergerak dalam keadaan diam.", "tags": "sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono"}, {"ID": "SKT-005", "Judul": "Hening di Kota", "Tahun": 2026, "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-005 - Hening di Kota.jpg", "web_image": "SKT-005.jpg", "artist_statement_id": "Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya.", "deskripsi_kuratorial": "Gambar ini menggambarkan sebuah suasana perkotaan yang dipenuhi oleh kekuatan gerak dan hening. Komposisi bidang menggunakan garis kontur yang dinamis dan terbentuk dari berbagai elemen, menciptakan ruang yang saling bertabrakan dan menyerap. Ketebalan tinta menggambarkan kontras antara bentuk gelap dan terang secara visual, memberikan kesan kedalaman pada karya. Elemen-elemen dalam gambar tidak hanya memiliki bentuk yang jelas tetapi juga terhubung dengan satu pola kekuatan, menunjukkan bahwa makna di balik karya ini adalah tentang pergerakan yang terus-menerus dan hening yang mendalam.", "tags": "sketch, drawing, inkdrawing, urbansketch, marutoseptriono"}, {"ID": "SKT-006", "Judul": "Hening di Kota", "Tahun": 2026, "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-006 - Hening di Kota.jpg", "web_image": "SKT-006.jpg", "artist_statement_id": "Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya.", "deskripsi_kuratorial": "Gambar ini menggambarkan sebuah adegan yang terjebak dalam keheningan, dengan bentuk-bentuk tangan dan tubuh yang dibuat dari garis kontur yang kuat dan tebal. Komposisi bidang menunjukkan perpaduan antara objek-objek gelap dan ruang yang luas, menciptakan kontras yang mendalam. Ruang heningnya di dalam gambar terbentuk oleh pola-pola garis yang menggambarkan keberadaan di luar, membangun suasana yang mungkin sedang berlangsung. Dari segi teknik, keterbatasan dan ketebalan dari tinta menciptakan kesan yang mendalam, menekankan perbedaan antara bentuk-bentuk yang terlihat dan yang tidak terlihat. Karya ini menggambarkan pemandangan yang dihiasi oleh keheningan, yang merupakan hasil dari gerak yang tidak terlalu terjadi, dan membangun persepsi tentang makna dalam ruang yang luas.", "tags": "sketch, drawing, inkdrawing, urbansketch, marutoseptriono"}, {"ID": "SKT-007", "Judul": "Hening Jalan", "Tahun": 2026, "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-007 - Hening Jalan.jpg", "web_image": "SKT-007.jpg", "artist_statement_id": "Goresan tinta ini adalah ikhtiar membekukan ritme hidup dan percakapan batin yang tak terucapkan. Di antara bentuk yang bergerak dan ruang yang tersisa, ada keheningan yang menuntut kita untuk hadir sepenuhnya.", "deskripsi_kuratorial": "Gambar ini menggambarkan suasana hening di tengah kehidupan perkotaan, dengan komposisi yang dinamis namun tetap dalam kesederhanaan. Garis-garis kontur tinta membentuk jalur-jalur yang menyerupai cahaya dari langit, menghubungkan ruang terbuka dan bangunan-bangunan yang tertutup di bawahnya. Ketebalan pada setiap garis menciptakan kontras yang mendalam antara hening dan aktivitas, membangun suasana yang khas dari perpaduan antara kehadiran dan ketiadaan. Karya ini menggambarkan makna dari gerak yang terus-menerus dalam waktu yang berhenti, melalui bentuk-bentuk yang dibuat dengan cara yang tidak teratur namun menunjukkan arah yang jelas.", "tags": "sketch, drawing, inkdrawing, urbansketch, marutoseptriono"}];
         let currentModalId = '';
 
         function googleTranslateElementInit() {
@@ -461,97 +434,5 @@
             }
         });
     </script>
-
-    <!-- MODAL POPUP RINCIAN STATISTIK NEGARA -->
-    <div class="modal" id="statsModal" onclick="closeStatsOnOutside(event)">
-        <div class="modal-content" style="max-width: 520px; grid-template-columns: 1fr; padding: 22px; position: relative;">
-            <span class="modal-close" onclick="closeStatsModal()">&times;</span>
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                <span id="statsIcon" style="font-size: 1.6rem;">📊</span>
-                <div>
-                    <h3 id="statsTitle" style="color: #58a6ff; font-size: 1.25rem;">Distribusi Asal Negara</h3>
-                    <p id="statsSubtitle" style="font-size: 0.78rem; color: #8b949e;">Jejak persebaran audiens portofolio</p>
-                </div>
-            </div>
-            <div id="statsTableContainer" style="margin-top: 10px; overflow-x: auto;"></div>
-            <div style="margin-top: 18px; padding-top: 12px; border-top: 1px solid #21262d; text-align: right;">
-                <button onclick="closeStatsModal()" style="background: #21262d; border: 1px solid #30363d; color: #e6edf3; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; cursor: pointer;">Tutup</button>
-            </div>
-        </div>
-    </div>
-
-
-    <script>
-        const geoStatsData = {
-            visitors: {
-                title: "Distribusi Negara Pengunjung",
-                icon: "📊",
-                subtitle: "Total 1,482 Kunjungan Terverifikasi (Global Edge Network)",
-                total: 1482,
-                items: [
-                    { country: "Indonesia", flag: "🇮🇩", count: 812, pct: 54.8 },
-                    { country: "Amerika Serikat", flag: "🇺🇸", count: 264, pct: 17.8 },
-                    { country: "Jepang", flag: "🇯🇵", count: 148, pct: 10.0 },
-                    { country: "Jerman", flag: "🇩🇪", count: 112, pct: 7.6 },
-                    { country: "Australia", flag: "🇦🇺", count: 84, pct: 5.7 },
-                    { country: "Lainnya (Global)", flag: "🌐", count: 62, pct: 4.1 }
-                ]
-            },
-            followers: {
-                title: "Distribusi Negara Pengikut & Kolektor",
-                icon: "👥",
-                subtitle: "Total 630+ Audiens Terhubung (Medsos, Kolektor & Komunitas Seni)",
-                total: 630,
-                items: [
-                    { country: "Indonesia", flag: "🇮🇩", count: 345, pct: 54.8 },
-                    { country: "Amerika Serikat", flag: "🇺🇸", count: 120, pct: 19.0 },
-                    { country: "Singapura", flag: "🇸🇬", count: 58, pct: 9.2 },
-                    { country: "Belanda", flag: "🇳🇱", count: 42, pct: 6.7 },
-                    { country: "Jepang", flag: "🇯🇵", count: 35, pct: 5.5 },
-                    { country: "Lainnya (Global)", flag: "🌐", count: 30, pct: 4.8 }
-                ]
-            }
-        };
-
-        function openStatsModal(type) {
-            const data = geoStatsData[type];
-            if (!data) return;
-
-            document.getElementById('statsIcon').innerText = data.icon;
-            document.getElementById('statsTitle').innerText = data.title;
-            document.getElementById('statsSubtitle').innerText = data.subtitle;
-
-            let tableHtml = '<table class="stats-table"><thead><tr><th>Negara</th><th style="text-align:right;">Jumlah</th><th style="text-align:right; width:90px;">Rasio</th></tr></thead><tbody>';
-
-            data.items.forEach(row => {
-                tableHtml += `
-                    <tr>
-                        <td>
-                            <strong>${row.flag} ${row.country}</strong>
-                            <div class="stats-progress-bar"><div class="stats-progress-fill" style="width: ${row.pct}%;"></div></div>
-                        </td>
-                        <td style="text-align:right; font-weight:600; color:#58a6ff;">${row.count.toLocaleString()}</td>
-                        <td style="text-align:right; color:#8b949e; font-size:0.75rem;">${row.pct}%</td>
-                    </tr>
-                `;
-            });
-
-            tableHtml += '</tbody></table>';
-            document.getElementById('statsTableContainer').innerHTML = tableHtml;
-
-            document.getElementById('statsModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeStatsModal() {
-            document.getElementById('statsModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function closeStatsOnOutside(e) {
-            if (e.target.id === 'statsModal') closeStatsModal();
-        }
-    </script>
-
 </body>
 </html>
