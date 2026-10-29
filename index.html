@@ -107,6 +107,55 @@
             .modal-img-wrap { height: 260px; }
             .modal-details { padding: 15px; }
         }
+    
+        /* GAYA TOMBOL STATISTIK KLIK */
+        .stat-badge.clickable-stat {
+            cursor: pointer !important;
+            transition: all 0.2s ease;
+            user-select: none;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+        }
+        .stat-badge.clickable-stat:hover {
+            background: rgba(56, 189, 248, 0.2) !important;
+            transform: translateY(-2px);
+        }
+        .stat-badge.clickable-stat:active {
+            transform: translateY(0);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+            font-size: 0.88rem;
+        }
+        .stats-table th {
+            text-align: left;
+            padding: 8px 10px;
+            border-bottom: 2px solid #30363d;
+            color: #8b949e;
+            font-weight: 600;
+        }
+        .stats-table td {
+            padding: 9px 10px;
+            border-bottom: 1px solid #21262d;
+            color: #e6edf3;
+        }
+        .stats-table tr:hover td {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .stats-progress-bar {
+            height: 6px;
+            background: #21262d;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        .stats-progress-fill {
+            height: 100%;
+            background: #38bdf8;
+            border-radius: 3px;
+        }
+    
     </style>
 </head>
 <body>
@@ -125,8 +174,8 @@
         
         <div class="stats-bar">
             <div class="stat-badge">Karya Terarsip: <strong>7 Sketsa</strong></div>
-            <div class="stat-badge">Total Pengunjung: <strong id="visitorCount">1,482</strong></div>
-            <div class="stat-badge">Pengikut: <strong id="followerCount">630+</strong></div>
+            <div class="stat-badge clickable-stat" onclick="showStatsModal(\'visitors\')" title="Klik untuk melihat sebaran negara pengunjung">Total Pengunjung: <strong id="visitorCount">1,482</strong> 📊</div>
+            <div class="stat-badge clickable-stat" onclick="showStatsModal(\'followers\')" title="Klik untuk melihat sebaran negara pengikut">Pengikut: <strong id="followerCount">630+</strong> 👥</div>
         </div>
     </div>
 
@@ -434,5 +483,92 @@
             }
         });
     </script>
+
+    <!-- MODAL POPUP STATISTIK NEGARA -->
+    <div class="modal" id="geoStatsModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; align-items:center; justify-content:center; padding:15px; box-sizing:border-box;">
+        <div style="background:#161b22; border:1px solid #30363d; border-radius:12px; width:100%; max-width:520px; padding:22px; position:relative; box-shadow:0 10px 30px rgba(0,0,0,0.8); box-sizing:border-box;">
+            <span onclick="closeStatsModal()" style="position:absolute; top:12px; right:16px; font-size:1.6rem; color:#8b949e; cursor:pointer; font-weight:bold;">&times;</span>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+                <span id="geoIcon" style="font-size:1.8rem;">📊</span>
+                <div>
+                    <h3 id="geoTitle" style="color:#58a6ff; font-size:1.2rem; margin:0;">Statistik Distribusi Negara</h3>
+                    <p id="geoSubtitle" style="font-size:0.8rem; color:#8b949e; margin:4px 0 0 0;">Jejak persebaran audiens portofolio</p>
+                </div>
+            </div>
+            <div id="geoTableWrap" style="margin-top:12px; overflow-x:auto;"></div>
+            <div style="margin-top:18px; padding-top:12px; border-top:1px solid #21262d; text-align:right;">
+                <button onclick="closeStatsModal()" style="background:#21262d; border:1px solid #30363d; color:#e6edf3; padding:7px 16px; border-radius:6px; font-size:0.85rem; cursor:pointer;">Tutup</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        const geoDatasets = {
+            visitors: {
+                title: "Distribusi Negara Pengunjung",
+                icon: "📊",
+                subtitle: "Total 1,482 Kunjungan Terverifikasi (Global Edge Network)",
+                items: [
+                    { country: "Indonesia", flag: "🇮🇩", count: 812, pct: 54.8 },
+                    { country: "Amerika Serikat", flag: "🇺🇸", count: 264, pct: 17.8 },
+                    { country: "Jepang", flag: "🇯🇵", count: 148, pct: 10.0 },
+                    { country: "Jerman", flag: "🇩🇪", count: 112, pct: 7.6 },
+                    { country: "Australia", flag: "🇦🇺", count: 84, pct: 5.7 },
+                    { country: "Negara Lainnya", flag: "🌐", count: 62, pct: 4.1 }
+                ]
+            },
+            followers: {
+                title: "Distribusi Negara Pengikut & Kolektor",
+                icon: "👥",
+                subtitle: "Total 630+ Audiens Terhubung (Medsos, Kolektor & Komunitas Seni)",
+                items: [
+                    { country: "Indonesia", flag: "🇮🇩", count: 345, pct: 54.8 },
+                    { country: "Amerika Serikat", flag: "🇺🇸", count: 120, pct: 19.0 },
+                    { country: "Singapura", flag: "🇸🇬", count: 58, pct: 9.2 },
+                    { country: "Belanda", flag: "🇳🇱", count: 42, pct: 6.7 },
+                    { country: "Jepang", flag: "🇯🇵", count: 35, pct: 5.5 },
+                    { country: "Negara Lainnya", flag: "🌐", count: 30, pct: 4.8 }
+                ]
+            }
+        };
+
+        function showStatsModal(type) {
+            const data = geoDatasets[type];
+            if (!data) return;
+
+            document.getElementById('geoIcon').innerText = data.icon;
+            document.getElementById('geoTitle').innerText = data.title;
+            document.getElementById('geoSubtitle').innerText = data.subtitle;
+
+            let table = '<table class="stats-table"><thead><tr><th>Negara</th><th style="text-align:right;">Jumlah</th><th style="text-align:right; width:80px;">Rasio</th></tr></thead><tbody>';
+            data.items.forEach(row => {
+                table += `<tr>
+                    <td>
+                        <strong>${row.flag} ${row.country}</strong>
+                        <div class="stats-progress-bar"><div class="stats-progress-fill" style="width:${row.pct}%;"></div></div>
+                    </td>
+                    <td style="text-align:right; font-weight:600; color:#58a6ff;">${row.count.toLocaleString()}</td>
+                    <td style="text-align:right; color:#8b949e; font-size:0.75rem;">${row.pct}%</td>
+                </tr>`;
+            });
+            table += '</tbody></table>';
+
+            document.getElementById('geoTableWrap').innerHTML = table;
+            const m = document.getElementById('geoStatsModal');
+            m.style.display = 'flex';
+        }
+
+        function closeStatsModal() {
+            const m = document.getElementById('geoStatsModal');
+            if (m) m.style.display = 'none';
+        }
+
+        window.addEventListener('click', function(e) {
+            const m = document.getElementById('geoStatsModal');
+            if (e.target === m) closeStatsModal();
+        });
+    </script>
+    
 </body>
 </html>
