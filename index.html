@@ -1,162 +1,360 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Katalog Sketsa Maruto Septriono</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Katalog Sketsa Maruto Septriono | Sketch Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #0b0f17; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 25px 12px; }
+        body { background-color: #0b0f17; color: #e6edf3; font-family: 'Plus Jakarta Sans', sans-serif; padding: 20px 10px 40px; }
+        
+        .top-nav { display: flex; justify-content: flex-end; max-width: 1300px; margin: 0 auto 15px auto; }
+        .lang-switch button {
+            background: #161b22; color: #8b949e; border: 1px solid #30363d; padding: 6px 14px;
+            font-size: 0.8rem; cursor: pointer; border-radius: 6px; font-weight: 600; transition: all 0.2s;
+        }
+        .lang-switch button.active { background: #1f6feb; color: #fff; border-color: #1f6feb; }
+
         .header { text-align: center; margin-bottom: 25px; }
-        .header h1 { font-size: 1.8rem; color: #58a6ff; margin-bottom: 6px; }
-        .header p { color: #8b949e; font-size: 0.9rem; }
-        .counter { display: inline-block; margin-top: 10px; background: rgba(56, 139, 253, 0.15); border: 1px solid rgba(56, 139, 253, 0.3); color: #58a6ff; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1300px; margin: 0 auto; width: 100%; }
-        .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; width: 100%; }
-        .img-container { position: relative; width: 100%; aspect-ratio: 4/5; background: #010409; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .img-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .header h1 { font-size: 2.1rem; color: #58a6ff; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .header p { color: #8b949e; font-size: 0.95rem; }
+
+        .stats-bar {
+            display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap;
+        }
+        .stat-badge {
+            background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; padding: 6px 14px;
+            border-radius: 20px; font-size: 0.8rem; color: #94a3b8; display: flex; align-items: center; gap: 6px;
+        }
+        .stat-badge strong { color: #38bdf8; }
+
+        .gallery-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 20px; max-width: 1300px; margin: 0 auto; width: 100%;
+        }
+        
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; width: 100%; transition: transform 0.2s, border-color 0.2s; }
+        .card:hover { border-color: #58a6ff; transform: translateY(-3px); }
+        
+        .img-container { position: relative; width: 100%; aspect-ratio: 4/5; background: #010409; overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .img-container img { width: 100%; height: 100%; object-fit: contain; }
         .badge { position: absolute; top: 10px; padding: 3px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; }
         .badge-id { left: 10px; background: #1f6feb; color: #fff; }
-        .badge-year { left: 65px; background: rgba(255,255,255,0.15); color: #fff; }
-        .card-content { padding: 14px; display: flex; flex-direction: column; flex-grow: 1; }
-        .card-title { font-size: 1rem; margin-bottom: 4px; color: #f0f6fc; }
-        .card-meta { font-size: 0.75rem; color: #8b949e; margin-bottom: 10px; }
-        .pricing-box { display: flex; justify-content: space-between; background: rgba(0,0,0,0.25); border: 1px solid #30363d; padding: 8px 10px; border-radius: 6px; margin-bottom: 10px; }
+        .badge-year { left: 68px; background: rgba(255,255,255,0.15); color: #fff; }
+
+        .card-content { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-title { font-size: 1.1rem; margin-bottom: 4px; color: #f0f6fc; cursor: pointer; }
+        .card-title:hover { color: #58a6ff; }
+        .card-meta { font-size: 0.78rem; color: #8b949e; margin-bottom: 12px; }
+
+        .pricing-box { display: flex; justify-content: space-between; background: rgba(0,0,0,0.25); border: 1px solid #30363d; padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; }
         .price-col .label { display: block; font-size: 0.65rem; color: #8b949e; }
-        .price-col .val { font-size: 0.95rem; font-weight: bold; color: #58a6ff; }
-        .price-col .val.free { color: #3fb950; font-size: 0.8rem; }
-        .contact-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
-        .btn { text-align: center; padding: 7px; border-radius: 6px; text-decoration: none; font-size: 0.75rem; font-weight: 600; color: #fff; }
+        .price-col .val { font-size: 1.05rem; font-weight: bold; color: #58a6ff; }
+        .price-col .val.free { color: #3fb950; font-size: 0.85rem; }
+
+        .contact-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+        .btn { text-align: center; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 0.78rem; font-weight: 600; color: #fff; }
         .btn-dm { background: #e1306c; }
         .btn-email { background: #238636; }
-        .statement { font-size: 0.75rem; font-style: italic; color: #c9d1d9; line-height: 1.35; margin-bottom: 10px; }
-        .detail-box summary { font-size: 0.75rem; color: #58a6ff; cursor: pointer; padding: 4px 0; }
-        .curatorial-text { font-size: 0.72rem; color: #8b949e; line-height: 1.4; margin-top: 6px; background: #0d1117; padding: 8px; border-radius: 6px; }
-        footer { text-align: center; margin-top: 40px; font-size: 0.75rem; color: #484f58; }
+
+        .statement { font-size: 0.8rem; font-style: italic; color: #c9d1d9; line-height: 1.35; margin-bottom: 14px; flex-grow: 1; }
+
+        .card-footer-action {
+            margin-top: auto; padding-top: 10px; border-top: 1px solid #21262d; display: flex; justify-content: space-between; align-items: center;
+        }
+        .btn-kuratorial { background: none; border: none; color: #58a6ff; font-weight: 600; font-size: 0.8rem; cursor: pointer; padding: 4px 0; }
+        .btn-direct-link {
+            background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 4px 8px; border-radius: 4px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-direct-link:hover { background: #1f6feb; color: #fff; }
+
+        /* MODAL KURATORIAL */
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(5,7,12,0.92); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 15px; }
+        .modal-content { background: #161b22; border: 1px solid #30363d; border-radius: 12px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1.1fr 1.2fr; position: relative; }
+        .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.6rem; color: #8b949e; cursor: pointer; z-index: 10; }
+        .modal-close:hover { color: #fff; }
+        .modal-img-wrap { background: #010409; display: flex; align-items: center; justify-content: center; padding: 15px; }
+        .modal-img-wrap img { max-width: 100%; max-height: 75vh; object-fit: contain; }
+        .modal-details { padding: 25px 20px; display: flex; flex-direction: column; gap: 12px; }
+        .modal-id { font-size: 0.85rem; font-weight: 700; color: #58a6ff; display: flex; justify-content: space-between; align-items: center; }
+        .modal-title { font-size: 1.4rem; color: #f0f6fc; }
+        .modal-specs { font-size: 0.8rem; color: #8b949e; border-top: 1px solid #21262d; border-bottom: 1px solid #21262d; padding: 8px 0; }
+        .statement-box { background: rgba(88, 166, 255, 0.08); border-left: 3px solid #58a6ff; padding: 8px 12px; font-style: italic; font-size: 0.85rem; color: #e6edf3; }
+        .curatorial-box { font-size: 0.82rem; color: #8b949e; line-height: 1.5; }
+
+        #toast {
+            visibility: hidden; min-width: 220px; background-color: #1f6feb; color: #fff; text-align: center;
+            border-radius: 6px; padding: 10px 16px; position: fixed; z-index: 10000; bottom: 25px; left: 50%;
+            transform: translateX(-50%); font-size: 0.82rem; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        #toast.show { visibility: visible; }
 
         @media screen and (max-width: 768px) {
-            body { padding: 12px 6px; }
-            .gallery-grid { grid-template-columns: 1fr 1fr !important; gap: 6px !important; }
-            .card { border-radius: 8px; }
-            .card-content { padding: 8px 6px; }
-            .card-title { font-size: 0.8rem; line-height: 1.2; margin-bottom: 2px; }
+            body { padding: 10px 6px; }
+            .header h1 { font-size: 1.45rem; }
+            .gallery-grid { grid-template-columns: calc(50% - 4px) calc(50% - 4px) !important; gap: 8px !important; }
+            .card-content { padding: 8px; }
+            .card-title { font-size: 0.88rem; }
             .card-meta { font-size: 0.65rem; margin-bottom: 6px; }
-            .pricing-box { padding: 4px 6px; margin-bottom: 6px; flex-direction: column; gap: 2px; }
-            .contact-actions { grid-template-columns: 1fr; gap: 4px; margin-bottom: 6px; }
-            .btn { padding: 5px; font-size: 0.65rem; }
-            .statement { font-size: 0.65rem; line-height: 1.2; margin-bottom: 6px; }
+            .pricing-box { padding: 4px 6px; margin-bottom: 6px; }
+            .price-col .label { font-size: 0.55rem; }
+            .price-col .val { font-size: 0.85rem; }
+            .contact-actions { grid-template-columns: 1fr; gap: 4px; }
+            .btn { padding: 5px; font-size: 0.68rem; }
+            .statement { display: none; }
+            .modal-content { grid-template-columns: 1fr !important; }
+            .modal-img-wrap { height: 260px; }
+            .modal-details { padding: 15px; }
         }
     </style>
 </head>
 <body>
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <div class="top-nav">
+        <div class="lang-switch">
+            <button class="active" id="btn-id" onclick="switchLang('id')">ID (Indonesia)</button>
+            <button id="btn-en" onclick="switchLang('en')">EN (English)</button>
+        </div>
+    </div>
+
     <div class="header">
         <h1>Katalog Sketsa Maruto Septriono</h1>
-        <p>Arsip Studi Bentuk, Garis Spontan & Gambar Tangan Orisinal</p>
-        <div class="counter">Total Sketsa Terarsip: 4 Karya Sketsa</div>
+        <p>Arsip Studi Bentuk, Garis Spontan &amp; Gambar Tangan Orisinal</p>
+        
+        <div class="stats-bar">
+            <div class="stat-badge">Karya Terarsip: <strong>4 Sketsa</strong></div>
+            <div class="stat-badge">Total Pengunjung: <strong id="visitorCount">1,482</strong></div>
+            <div class="stat-badge">Pengikut: <strong id="followerCount">630+</strong></div>
+        </div>
     </div>
+
     <div class="gallery-grid">
         
-        <div class="card" data-id="SKT-004">
-            <div class="img-container">
-                <span class="badge badge-id">SKT-004</span>
-                <span class="badge badge-year">2026</span>
-                <img src="images/SKT-004.jpg?v=1793187339" alt="Kerja di Hening" loading="lazy" />
+    <div class="card" id="card-SKT-004" data-id="SKT-004">
+        <div class="img-container" onclick="openModal('SKT-004')">
+            <span class="badge badge-id">SKT-004</span>
+            <span class="badge badge-year">2026</span>
+            <img src="images/SKT-004.jpg" alt="Kerja di Hening" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x500/161b22/888?text=SKT-004';"/>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title" onclick="openModal('SKT-004')">Kerja di Hening</h3>
+            <p class="card-meta">29.7 cm x 42 cm • Tinta di atas kertas</p>
+            <div class="pricing-box">
+                <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
+                <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
             </div>
-            <div class="card-content">
-                <h3 class="card-title">Kerja di Hening</h3>
-                <p class="card-meta">29.7 cm x 42 cm • Tinta di atas kertas</p>
-                <div class="pricing-box">
-                    <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
-                    <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
-                </div>
-                <div class="contact-actions">
-                    <a href="[https://ig.me/m/maruto.septriono](https://ig.me/m/maruto.septriono)" target="_blank" class="btn btn-dm">✉️ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-004%20-%20Kerja di Hening" class="btn btn-email">✉️ Beli via Email</a>
-                </div>
-                <p class="statement">"Dalam setiap garis yang menyebar, terdapat sebuah ruang kosong yang tidak pernah selesai. Karya ini bukan hanya menggambarkan, tetapi menciptakan ruang yang menyimpan waktu dan kehadiran."</p>
-                <details class="detail-box">
-                    <summary>• Detail</summary>
-                    <div class="curatorial-text"><p>Garis-garis tinta yang ditarik secara dinamis membentuk sebuah kota yang terjaga dalam hening. Kontras antara gelap dan terang menunjukkan perbedaan dalam bentuk, namun juga menggambarkan kehadiran dari ruang yang tidak diisi. Komposisi ini menciptakan suasana yang tenang, seperti waktu yang bergerak dalam keadaan diam.</p></div>
-                </details>
+            <div class="contact-actions">
+                <a href="https://ig.me/m/maruto.septriono" target="_blank" class="btn btn-dm">✉️ DM</a>
+                <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-004%20-%20Kerja di Hening" class="btn btn-email">✉️ Beli via Email</a>
+            </div>
+            <p class="statement">"Dalam setiap garis yang menyebar, terdapat sebuah ruang kosong yang tidak pernah selesai. Karya ini bukan hanya menggambarkan, tetapi menciptakan ruang yang menyimpan waktu dan kehadiran."</p>
+            <div class="card-footer-action">
+                <button class="btn-kuratorial" onclick="openModal('SKT-004')">Kuratorial ›</button>
+                <button class="btn-direct-link" onclick="copyDirectLink('SKT-004', event)" title="Salin Tautan Langsung">🔗 Salin Link</button>
             </div>
         </div>
-        
-        <div class="card" data-id="SKT-003">
-            <div class="img-container">
-                <span class="badge badge-id">SKT-003</span>
-                <span class="badge badge-year">2026</span>
-                <img src="images/SKT-003.jpg?v=1793187339" alt="Puitis reflektif tentang figur/keheningan batin" loading="lazy" />
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Puitis reflektif tentang figur/keheningan batin</h3>
-                <p class="card-meta">29.7 cm x 42 cm • Tinta di atas kertas</p>
-                <div class="pricing-box">
-                    <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
-                    <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
-                </div>
-                <div class="contact-actions">
-                    <a href="[https://ig.me/m/maruto.septriono](https://ig.me/m/maruto.septriono)" target="_blank" class="btn btn-dm">✉️ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-003%20-%20Puitis reflektif tentang figur/keheningan batin" class="btn btn-email">✉️ Beli via Email</a>
-                </div>
-                <p class="statement">"Seniman mengungkapkan bahwa gestur hening dan tarikan garis ini mencerminkan ketenangan dalam pikiran, dengan setiap titik tinta yang membentuk bentuk tubuh yang terus bergerak, menyerap kekuatan dari alam semesta. Ini adalah karya yang menggambarkan perjalanan hati dan jiwa yang tidak bisa dijelaskan secara langsung."</p>
-                <details class="detail-box">
-                    <summary>• Detail</summary>
-                    <div class="curatorial-text"><p>Karya ini memperlihatkan figur dalam posisi berdiri dengan tubuh bersila, menciptakan ruang kosong yang mendalam di sekitarnya. Garis-garis tinta yang ekspresif menggambarkan bentuk tubuh yang menyerupai kehidupan yang terus bergerak dan mungkin sedang menyimpan suara dalam hati. Ruang kosong di sekelilingnya menjadi ruang untuk perasaan, membangun koneksi antara figur dengan lingkungan. Karya ini menggambarkan resonansi emosional yang mendalam dari keheningan batin dan ketenangan yang terjadi saat seseorang berada dalam proses refleksi.</p></div>
-                </details>
-            </div>
-        </div>
-        
-        <div class="card" data-id="SKT-002">
-            <div class="img-container">
-                <span class="badge badge-id">SKT-002</span>
-                <span class="badge badge-year">2026</span>
-                <img src="images/SKT-002.jpg?v=1793187339" alt="Kerusakan dalam Perjalanan" loading="lazy" />
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Kerusakan dalam Perjalanan</h3>
-                <p class="card-meta">29,7 cm x 42 cm • Tinta di atas kertas</p>
-                <div class="pricing-box">
-                    <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
-                    <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
-                </div>
-                <div class="contact-actions">
-                    <a href="[https://ig.me/m/maruto.septriono](https://ig.me/m/maruto.septriono)" target="_blank" class="btn btn-dm">✉️ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-002%20-%20Kerusakan dalam Perjalanan" class="btn btn-email">✉️ Beli via Email</a>
-                </div>
-                <p class="statement">"1-2 Berdasarkan bentuk visual ini, karya ini menggambarkan keadaan yang sedang terjadi di luar ruangan, dengan fokus pada ketidakstabilan dan perubahan. Dalam gambar ini, garis-garis yang digunakan tidak hanya membentuk bentuk objek tetapi juga menciptakan dinamika waktu dan ruang, menggambarkan proses berhenti atau tindak lanjut dari suatu keadaan."</p>
-                <details class="detail-box">
-                    <summary>• Detail</summary>
-                    <div class="curatorial-text"><p>Karya ini menggunakan garis-garis yang sangat berbeda dalam gaya dan bentuknya. Garis-garis yang digunakan memiliki variasi tinggi, membangun struktur dari benda-benda di atas kertas. Dari sudut pandang artistik, gambar ini menggambarkan ketidakstabilan dan perubahan secara visual melalui gerakan garis yang tidak teratur. Karena itu, bentuk objek dalam karya ini menjadi anatomi dari keadaan yang sedang berlangsung. Dalam konteks ekspresi emosional, gambar ini menggambarkan proses perubahan dan ketidakstabilan yang sedang terjadi di luar ruangan.</p></div>
-                </details>
-            </div>
-        </div>
-        
-        <div class="card" data-id="SKT-001">
-            <div class="img-container">
-                <span class="badge badge-id">SKT-001</span>
-                <span class="badge badge-year">2026</span>
-                <img src="images/SKT-001.jpg?v=1793187339" alt="Kesadaran di Tangan" loading="lazy" />
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Kesadaran di Tangan</h3>
-                <p class="card-meta">29.7 cm x 42 cm • Tinta di atas kertas</p>
-                <div class="pricing-box">
-                    <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
-                    <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
-                </div>
-                <div class="contact-actions">
-                    <a href="[https://ig.me/m/maruto.septriono](https://ig.me/m/maruto.septriono)" target="_blank" class="btn btn-dm">✉️ DM</a>
-                    <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-001%20-%20Kesadaran di Tangan" class="btn btn-email">✉️ Beli via Email</a>
-                </div>
-                <p class="statement">"Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan."</p>
-                <details class="detail-box">
-                    <summary>• Detail</summary>
-                    <div class="curatorial-text"><p>Garis-garis tinta yang digunakan dalam karya ini membentuk sebuah struktur visual yang dinamis, menunjukkan gerakan dan kekuatan dari bentuk-bentuk yang terbentuk. Kontras antara gelap dan terang menciptakan ruang yang mendalam, menggambarkan ketenangan yang tidak pernah berhenti di tengah keterbatasan. Komposisi ini menyoroti hubungan antara objek dengan ruang sekitarnya, serta menunjukkan bahwa bentuk-bentuk itu bukan hanya bentuk fisik, tetapi juga representasi dari perasaan dan kehidupan yang sedang berlangsung.</p></div>
-                </details>
-            </div>
-        </div>
-        
     </div>
-    <footer>&#169; 2026 Maruto Septriono. Arsip Sketsa & Eksplorasi Visual Orisinal.</footer>
+    
+
+    <div class="card" id="card-SKT-001" data-id="SKT-001">
+        <div class="img-container" onclick="openModal('SKT-001')">
+            <span class="badge badge-id">SKT-001</span>
+            <span class="badge badge-year">2026</span>
+            <img src="images/SKT-001.jpg" alt="Kesadaran di Tangan" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x500/161b22/888?text=SKT-001';"/>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title" onclick="openModal('SKT-001')">Kesadaran di Tangan</h3>
+            <p class="card-meta">29.7 cm x 42 cm • Tinta di atas kertas</p>
+            <div class="pricing-box">
+                <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
+                <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
+            </div>
+            <div class="contact-actions">
+                <a href="https://ig.me/m/maruto.septriono" target="_blank" class="btn btn-dm">✉️ DM</a>
+                <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-001%20-%20Kesadaran di Tangan" class="btn btn-email">✉️ Beli via Email</a>
+            </div>
+            <p class="statement">"Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan."</p>
+            <div class="card-footer-action">
+                <button class="btn-kuratorial" onclick="openModal('SKT-001')">Kuratorial ›</button>
+                <button class="btn-direct-link" onclick="copyDirectLink('SKT-001', event)" title="Salin Tautan Langsung">🔗 Salin Link</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="card" id="card-SKT-002" data-id="SKT-002">
+        <div class="img-container" onclick="openModal('SKT-002')">
+            <span class="badge badge-id">SKT-002</span>
+            <span class="badge badge-year">2026</span>
+            <img src="images/SKT-002.jpg" alt="Kerusakan dalam Perjalanan" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x500/161b22/888?text=SKT-002';"/>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title" onclick="openModal('SKT-002')">Kerusakan dalam Perjalanan</h3>
+            <p class="card-meta">29,7 cm x 42 cm • Tinta di atas kertas</p>
+            <div class="pricing-box">
+                <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
+                <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
+            </div>
+            <div class="contact-actions">
+                <a href="https://ig.me/m/maruto.septriono" target="_blank" class="btn btn-dm">✉️ DM</a>
+                <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-002%20-%20Kerusakan dalam Perjalanan" class="btn btn-email">✉️ Beli via Email</a>
+            </div>
+            <p class="statement">"1-2 Berdasarkan bentuk visual ini, karya ini menggambarkan keadaan yang sedang terjadi di luar ruangan, dengan fokus pada ketidakstabilan dan perubahan. Dalam gambar ini, garis-garis yang digunakan tidak hanya membentuk bentuk objek tetapi juga menciptakan dinamika waktu dan ruang, menggambarkan proses berhenti atau tindak lanjut dari suatu keadaan."</p>
+            <div class="card-footer-action">
+                <button class="btn-kuratorial" onclick="openModal('SKT-002')">Kuratorial ›</button>
+                <button class="btn-direct-link" onclick="copyDirectLink('SKT-002', event)" title="Salin Tautan Langsung">🔗 Salin Link</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="card" id="card-SKT-003" data-id="SKT-003">
+        <div class="img-container" onclick="openModal('SKT-003')">
+            <span class="badge badge-id">SKT-003</span>
+            <span class="badge badge-year">2026</span>
+            <img src="images/SKT-003.jpg" alt="Puitis reflektif tentang figur/keheningan batin" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x500/161b22/888?text=SKT-003';"/>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title" onclick="openModal('SKT-003')">Puitis reflektif tentang figur/keheningan batin</h3>
+            <p class="card-meta">29.7 cm x 42 cm • Tinta di atas kertas</p>
+            <div class="pricing-box">
+                <div class="price-col"><span class="label">Karya Original</span><span class="val">$ 100</span></div>
+                <div class="price-col"><span class="label">Pengiriman</span><span class="val free">Bebas Ongkir</span></div>
+            </div>
+            <div class="contact-actions">
+                <a href="https://ig.me/m/maruto.septriono" target="_blank" class="btn btn-dm">✉️ DM</a>
+                <a href="mailto:kirimdoa@gmail.com?subject=Inquiry%20Sketsa%20SKT-003%20-%20Puitis reflektif tentang figur/keheningan batin" class="btn btn-email">✉️ Beli via Email</a>
+            </div>
+            <p class="statement">"Seniman mengungkapkan bahwa gestur hening dan tarikan garis ini mencerminkan ketenangan dalam pikiran, dengan setiap titik tinta yang membentuk bentuk tubuh yang terus bergerak, menyerap kekuatan dari alam semesta. Ini adalah karya yang menggambarkan perjalanan hati dan jiwa yang tidak bisa dijelaskan secara langsung."</p>
+            <div class="card-footer-action">
+                <button class="btn-kuratorial" onclick="openModal('SKT-003')">Kuratorial ›</button>
+                <button class="btn-direct-link" onclick="copyDirectLink('SKT-003', event)" title="Salin Tautan Langsung">🔗 Salin Link</button>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+
+    <!-- MODAL POPUP KURATORIAL -->
+    <div class="modal" id="artModal" onclick="closeModalOnOutside(event)">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="modal-img-wrap">
+                <img alt="Detail Sketsa" id="mImg" src=""/>
+            </div>
+            <div class="modal-details">
+                <div class="modal-id">
+                    <span id="mId">SKT-000</span>
+                    <button class="btn-direct-link" onclick="copyModalLink()">🔗 Salin Link</button>
+                </div>
+                <h2 class="modal-title" id="mTitle">Judul Sketsa</h2>
+                <div class="modal-specs">
+                    <div>Tahun: <span id="mYear">2026</span></div>
+                    <div>Media: <span id="mMedia">Tinta di atas kertas</span></div>
+                    <div>Ukuran Fisik: <span id="mSize">29,7 cm x 42 cm</span></div>
+                </div>
+                <div class="statement-box" id="mStatement">"Artist Statement..."</div>
+                <div class="curatorial-box" id="mCuratorial">Catatan Kuratorial...</div>
+                <div class="contact-actions" style="margin-top:10px;">
+                    <a class="btn btn-dm" href="https://ig.me/m/maruto.septriono" target="_blank">✉️ DM Instagram</a>
+                    <a class="btn btn-email" href="#" id="mEmailBtn">✉️ Beli via Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast">Tautan berhasil disalin!</div>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
+    <script>
+        const catalogData = [{"ID": "SKT-003", "Judul": "Puitis reflektif tentang figur/keheningan batin", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "artist_statement_id": "Seniman mengungkapkan bahwa gestur hening dan tarikan garis ini mencerminkan ketenangan dalam pikiran, dengan setiap titik tinta yang membentuk bentuk tubuh yang terus bergerak, menyerap kekuatan dari alam semesta. Ini adalah karya yang menggambarkan perjalanan hati dan jiwa yang tidak bisa dijelaskan secara langsung.", "deskripsi_kuratorial": "Karya ini memperlihatkan figur dalam posisi berdiri dengan tubuh bersila, menciptakan ruang kosong yang mendalam di sekitarnya. Garis-garis tinta yang ekspresif menggambarkan bentuk tubuh yang menyerupai kehidupan yang terus bergerak dan mungkin sedang menyimpan suara dalam hati. Ruang kosong di sekelilingnya menjadi ruang untuk perasaan, membangun koneksi antara figur dengan lingkungan. Karya ini menggambarkan resonansi emosional yang mendalam dari keheningan batin dan ketenangan yang terjadi saat seseorang berada dalam proses refleksi.", "tags": "sketch, inkdrawing, figurativedrawing, contemplation, marutoseptriono"}, {"ID": "SKT-002", "Judul": "Kerusakan dalam Perjalanan", "Tahun": "2026", "Ukuran": "29,7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-002 - Hening di Antara Kebutuhan.jpg", "web_image": "SKT-002.jpg", "artist_statement_id": "1-2 Berdasarkan bentuk visual ini, karya ini menggambarkan keadaan yang sedang terjadi di luar ruangan, dengan fokus pada ketidakstabilan dan perubahan. Dalam gambar ini, garis-garis yang digunakan tidak hanya membentuk bentuk objek tetapi juga menciptakan dinamika waktu dan ruang, menggambarkan proses berhenti atau tindak lanjut dari suatu keadaan.", "deskripsi_kuratorial": "Karya ini menggunakan garis-garis yang sangat berbeda dalam gaya dan bentuknya. Garis-garis yang digunakan memiliki variasi tinggi, membangun struktur dari benda-benda di atas kertas. Dari sudut pandang artistik, gambar ini menggambarkan ketidakstabilan dan perubahan secara visual melalui gerakan garis yang tidak teratur. Karena itu, bentuk objek dalam karya ini menjadi anatomi dari keadaan yang sedang berlangsung. Dalam konteks ekspresi emosional, gambar ini menggambarkan proses perubahan dan ketidakstabilan yang sedang terjadi di luar ruangan.", "tags": "sketch, drawing, inkdrawing, contemporaryart, darkart, indonesianartist, marutoseptriono"}, {"ID": "SKT-001", "Judul": "Kesadaran di Tangan", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-001 - Kesadaran di Tangan.jpg", "web_image": "SKT-001.jpg", "artist_statement_id": "Dalam setiap garis yang mengalir, terdapat sebuah ruang kosong yang menunggu. Karya ini bukan sekadar bentuk, melainkan perjalanan hati yang ditarik oleh kehadiran dan ketenangan.", "deskripsi_kuratorial": "Garis-garis tinta yang digunakan dalam karya ini membentuk sebuah struktur visual yang dinamis, menunjukkan gerakan dan kekuatan dari bentuk-bentuk yang terbentuk. Kontras antara gelap dan terang menciptakan ruang yang mendalam, menggambarkan ketenangan yang tidak pernah berhenti di tengah keterbatasan. Komposisi ini menyoroti hubungan antara objek dengan ruang sekitarnya, serta menunjukkan bahwa bentuk-bentuk itu bukan hanya bentuk fisik, tetapi juga representasi dari perasaan dan kehidupan yang sedang berlangsung.", "tags": "sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono"}, {"ID": "SKT-004", "Judul": "Kerja di Hening", "Tahun": "2026", "Ukuran": "29.7 cm x 42 cm", "Media": "Tinta di atas kertas", "harga_original_usd": 100, "catatan_pengiriman": "Bebas Ongkos Kirim", "Nama_File": "SKT-004 - Kerja di Hening.jpg", "web_image": "SKT-004.jpg", "artist_statement_id": "Dalam setiap garis yang menyebar, terdapat sebuah ruang kosong yang tidak pernah selesai. Karya ini bukan hanya menggambarkan, tetapi menciptakan ruang yang menyimpan waktu dan kehadiran.", "deskripsi_kuratorial": "Garis-garis tinta yang ditarik secara dinamis membentuk sebuah kota yang terjaga dalam hening. Kontras antara gelap dan terang menunjukkan perbedaan dalam bentuk, namun juga menggambarkan kehadiran dari ruang yang tidak diisi. Komposisi ini menciptakan suasana yang tenang, seperti waktu yang bergerak dalam keadaan diam.", "tags": "sketch, drawing, inkdrawing, urbansketch, contemporaryart, marutoseptriono"}];
+        let currentModalId = '';
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'id', includedLanguages: 'en,id', autoDisplay: false }, 'google_translate_element');
+        }
+
+        function switchLang(lang) {
+            document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            } else {
+                document.cookie = 'googtrans=/id/' + lang + '; path=/;';
+                window.location.reload();
+            }
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.className = 'show';
+            setTimeout(() => { t.className = ''; }, 2500);
+        }
+
+        function copyDirectLink(artId, e) {
+            if (e) e.stopPropagation();
+            const url = window.location.origin + window.location.pathname + '#' + artId;
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('🔗 Tautan ' + artId + ' berhasil disalin!');
+            }).catch(() => prompt('Salin URL:', url));
+        }
+
+        function copyModalLink() {
+            if (currentModalId) copyDirectLink(currentModalId);
+        }
+
+        function openModal(artId, updateHash = true) {
+            const item = catalogData.find(x => x.ID === artId || x.id === artId);
+            if (!item) return;
+
+            currentModalId = item.ID || item.id;
+            document.getElementById('mId').innerText = currentModalId;
+            document.getElementById('mTitle').innerText = item.Judul || 'Tanpa Judul';
+            document.getElementById('mYear').innerText = item.Tahun || '2026';
+            document.getElementById('mMedia').innerText = item.Media || 'Tinta di atas kertas';
+            document.getElementById('mSize').innerText = item.Ukuran || '29,7 cm x 42 cm';
+            document.getElementById('mImg').src = 'images/' + currentModalId + '.jpg';
+            document.getElementById('mStatement').innerText = '"' + (item.artist_statement_id || '') + '"';
+            document.getElementById('mCuratorial').innerText = item.deskripsi_kuratorial || 'Belum ada kuratorial.';
+            document.getElementById('mEmailBtn').href = 'mailto:kirimdoa@gmail.com?subject=Beli Sketsa ' + currentModalId + ' - ' + encodeURIComponent(item.Judul || '');
+
+            document.getElementById('artModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            if (updateHash) {
+                history.pushState(null, null, '#' + currentModalId);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('artModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentModalId = '';
+            history.pushState(null, null, window.location.pathname);
+        }
+
+        function closeModalOnOutside(e) {
+            if (e.target.id === 'artModal') closeModal();
+        }
+
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+        // Buka otomatis jika tautan hash diklik dari web luar
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '').trim();
+            if (hash) {
+                setTimeout(() => {
+                    openModal(hash, false);
+                    const el = document.getElementById('card-' + hash);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            }
+        });
+    </script>
 </body>
 </html>
