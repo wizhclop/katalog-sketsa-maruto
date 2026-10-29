@@ -526,5 +526,122 @@
             if (e.target.classList.contains('modal')) e.target.style.display = 'none';
         }
     </script>
+
+    <script>
+        // Kamus glosarium kuratorial & seni rupa
+        const artGlossary = [
+            ["tinta di atas kertas", "ink on paper"],
+            ["karya ini menggambarkan", "this artwork portrays"],
+            ["karya ini menampilkan", "this work presents"],
+            ["karya ini menyoroti", "this piece highlights"],
+            ["sebuah adegan sehari-hari", "an everyday scene"],
+            ["di lingkungan perkotaan", "in an urban environment"],
+            ["gaya sketsa yang dinamis", "a dynamic sketch style"],
+            ["figur manusia terlihat sedang", "human figures are seen"],
+            ["duduk di depan mobil", "sitting in front of a car"],
+            ["menciptakan kesan kehidupan", "creating a sense of life"],
+            ["penuh dengan aktivitas", "filled with activity"],
+            ["garis kontur yang kuat dan tebal", "strong and bold contour lines"],
+            ["elemen arsir yang mendalam", "deep hatching elements"],
+            ["tekstur ruang lingkungan yang padat", "the texture of a dense urban space"],
+            ["komposisi bidang menarik perhatian", "the composition draws attention"],
+            ["dari bagian atas gambar ke bawah", "from the top of the image to the bottom"],
+            ["menciptakan kesan kedalaman", "creating a sense of depth"],
+            ["efek jarak dan kontras tinggi", "distance effects and high contrast"],
+            ["antara objek-objek di depan dan latar belakang", "between foreground objects and background"],
+            ["suasana kota yang hidup", "a vibrant city atmosphere"],
+            ["bagi saya,", "for me,"],
+            ["di balik tarikan tinta ini tersimpan", "behind these ink strokes lies"],
+            ["keheningan batin yang membeku", "a frozen inner silence"],
+            ["keheningan", "silence"],
+            ["tarikan garis spontan", "spontaneous line strokes"],
+            ["percakapan batin", "inner dialogue"],
+            ["dinamika ruang", "spatial dynamics"],
+            ["ruang hening", "quiet space"],
+            ["denyut kota", "urban pulse"],
+            ["bergerak cepat", "moving rapidly"],
+            ["perenungan batin", "inner contemplation"],
+            ["kepungan bentuk", "siege of forms"],
+            ["keterbatasan", "boundaries"],
+            ["kondisi yang tidak pernah berhenti", "a perpetual state"],
+            ["rumah di tengah kota", "house in the middle of the city"],
+            ["hening di jalan", "silence on the road"],
+            ["hening di kota", "silence in the city"],
+            ["dinamika perkotaan", "urban dynamics"],
+            ["ruang kota", "city space"],
+            ["jejak garis ruang", "traces of spatial lines"]
+        ];
+
+        function translateArtText(text, toLang) {
+            if (!text) return "";
+            if (toLang === 'id') return text;
+            
+            let res = text;
+            artGlossary.forEach(([idTerm, enTerm]) => {
+                const regex = new RegExp(idTerm, "gi");
+                res = res.replace(regex, enTerm);
+            });
+            return res;
+        }
+
+        // Simpan teks asli ID saat pertama kali halaman dimuat
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.trans-stmt').forEach(el => {
+                if (!el.getAttribute('data-orig')) {
+                    el.setAttribute('data-orig', el.innerText.trim());
+                }
+            });
+            document.querySelectorAll('.trans-title').forEach(el => {
+                if (!el.getAttribute('data-orig')) {
+                    el.setAttribute('data-orig', el.innerText.trim());
+                }
+            });
+        });
+
+        // Modifikasi fungsi setLanguage agar teks statement dan judul ikut berubah
+        const originalSetLanguage = window.setLanguage;
+        window.setLanguage = function(lang) {
+            if (typeof originalSetLanguage === "function") {
+                originalSetLanguage(lang);
+            }
+
+            // Terjemahkan seluruh kotak Statement Seniman di kartu
+            document.querySelectorAll('.trans-stmt').forEach(el => {
+                const orig = el.getAttribute('data-orig') || el.innerText.trim();
+                if (lang === 'en') {
+                    const clean = orig.replace(/^"|"$/g, '');
+                    el.innerText = '"' + translateArtText(clean, 'en') + '"';
+                } else {
+                    el.innerText = orig;
+                }
+            });
+
+            // Terjemahkan Judul Karya di kartu
+            document.querySelectorAll('.trans-title').forEach(el => {
+                const orig = el.getAttribute('data-orig') || el.innerText.trim();
+                el.innerText = (lang === 'en') ? translateArtText(orig, 'en') : orig;
+            });
+        };
+
+        // Modifikasi fungsi bukaModalKuratorial agar teks di dalam popup modal otomatis terjemah
+        const originalBukaModalKuratorial = window.bukaModalKuratorial;
+        window.bukaModalKuratorial = function(id, title, stmt, kur) {
+            if (currentLang === 'en') {
+                title = translateArtText(title, 'en');
+                stmt = translateArtText(stmt, 'en');
+                kur = translateArtText(kur, 'en');
+            }
+            if (typeof originalBukaModalKuratorial === "function") {
+                originalBukaModalKuratorial(id, title, stmt, kur);
+            } else {
+                document.getElementById('kurTitle').innerText = title;
+                document.getElementById('kurMeta').innerText = (currentLang === 'en' ? "Archive Code: " : "Kode Arsip: ") + id;
+                document.getElementById('kurStatement').innerText = '"' + stmt + '"';
+                document.getElementById('kurText').innerText = kur;
+                document.getElementById('modalKuratorial').style.display = 'flex';
+            }
+        };
+    </script>
+
 </body>
 </html>
