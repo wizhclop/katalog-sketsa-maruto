@@ -116,9 +116,8 @@
         <h1>Katalog Sketsa Maruto Septriono</h1>
         <p>Arsip Studi Bentuk, Garis Spontan & Gambar Tangan Orisinal</p>
         <div class="stats-bar">
-            <div class="stat-badge">Karya Terarsip: <strong>8 Sketsa</strong></div>
-            <div class="stat-badge clickable" onclick="bukaModalStats('visitors')">Total Pengunjung: <strong>1,482</strong> 📊</div>
-            <div class="stat-badge clickable" onclick="bukaModalStats('followers')">Pengikut: <strong>630+</strong> 👥</div>
+            <div class="stat-badge">Karya Terarsip: <strong>__TOTAL_KARYA__ Sketsa</strong></div>
+            <div class="stat-badge" style="border-color: #3fb950; color: #3fb950;">👁️ Kunjungan Riil: <strong id="real-hits-sketch">1</strong></div>
         </div>
     </header>
 
@@ -389,24 +388,6 @@
         </div>
     </div>
 
-    <!-- MODAL STATISTIK -->
-    <div class="modal" id="modalStats">
-        <div class="modal-box">
-            <span class="modal-close" onclick="tutupModal('modalStats')">&times;</span>
-            <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-                <span id="stIcon" style="font-size:1.8rem;">📊</span>
-                <div>
-                    <h3 id="stTitle" style="color:#58a6ff;">Distribusi Negara</h3>
-                    <p id="stSub" style="font-size:0.75rem; color:#8b949e;">Data verifikasi jaringan global</p>
-                </div>
-            </div>
-            <div id="stTable" style="margin-top:10px;"></div>
-            <div style="margin-top:15px; text-align:right;">
-                <button onclick="tutupModal('modalStats')" style="background:#238636; border:none; color:#fff; padding:6px 16px; border-radius:6px; cursor:pointer;">Tutup</button>
-            </div>
-        </div>
-    </div>
-
     <!-- MODAL KURATORIAL -->
     <div class="modal" id="modalKuratorial">
         <div class="modal-box">
@@ -448,56 +429,7 @@
             }
         }
 
-        const statsData = {
-            visitors: {
-                title: "Negara Pengunjung Portofolio",
-                icon: "📊",
-                sub: "Total 1,482 Kunjungan Terverifikasi (Global Edge Network)",
-                items: [
-                    { c: "Indonesia", f: "🇮🇩", n: "812", p: 54.8 },
-                    { c: "Amerika Serikat", f: "🇺🇸", n: "264", p: 17.8 },
-                    { c: "Jepang", f: "🇯🇵", n: "148", p: 10.0 },
-                    { c: "Jerman", f: "🇩🇪", n: "112", p: 7.6 },
-                    { c: "Australia", f: "🇦🇺", n: "84", p: 5.7 },
-                    { c: "Negara Lainnya", f: "🌐", n: "62", p: 4.1 }
-                ]
-            },
-            followers: {
-                title: "Negara Pengikut & Kolektor",
-                icon: "👥",
-                sub: "Total 630+ Audiens Terhubung (Medsos & Jaringan Seni)",
-                items: [
-                    { c: "Indonesia", f: "🇮🇩", n: "345", p: 54.8 },
-                    { c: "Amerika Serikat", f: "🇺🇸", n: "120", p: 19.0 },
-                    { c: "Singapura", f: "🇸🇬", n: "58", p: 9.2 },
-                    { c: "Belanda", f: "🇳🇱", n: "42", p: 6.7 },
-                    { c: "Jepang", f: "🇯🇵", n: "35", p: 5.5 },
-                    { c: "Negara Lainnya", f: "🌐", n: "30", p: 4.8 }
-                ]
-            }
-        };
-
-        function bukaModalStats(type) {
-            const d = statsData[type];
-            if (!d) return;
-            document.getElementById('stIcon').innerText = d.icon;
-            document.getElementById('stTitle').innerText = d.title;
-            document.getElementById('stSub').innerText = d.sub;
-
-            let html = '<table style="width:100%; border-collapse:collapse; font-size:0.85rem;">';
-            html += '<tr style="border-bottom:2px solid #30363d; color:#8b949e;"><th style="text-align:left; padding:6px 0;">Negara</th><th style="text-align:right;">Jumlah</th><th style="text-align:right; width:60px;">Rasio</th></tr>';
-            d.items.forEach(i => {
-                html += '<tr style="border-bottom:1px solid #21262d;">' +
-                    '<td style="padding:7px 0;"><strong>' + i.f + ' ' + i.c + '</strong>' +
-                    '<div style="height:4px; background:#21262d; border-radius:2px; margin-top:3px;"><div style="width:' + i.p + '%; height:100%; background:#38bdf8;"></div></div></td>' +
-                    '<td style="text-align:right; color:#58a6ff; font-weight:bold;">' + i.n + '</td>' +
-                    '<td style="text-align:right; color:#8b949e; font-size:0.75rem;">' + i.p + '%</td>' +
-                '</tr>';
-            });
-            html += '</table>';
-            document.getElementById('stTable').innerHTML = html;
-            document.getElementById('modalStats').style.display = 'flex';
-        }
+        
 
         function bukaModalKuratorial(id, title, stmt, kur) {
             document.getElementById('kurTitle').innerText = title;
@@ -522,5 +454,19 @@
             if (e.target.classList.contains('modal')) e.target.style.display = 'none';
         }
     </script>
+
+    <!-- Pelacak Real-Time Gratis & Riil (GoatCounter) -->
+    <script data-goatcounter="https://katalog-sketsa-maruto.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>
+        fetch("https://katalog-sketsa-maruto.goatcounter.com/counter/" + encodeURIComponent(location.pathname) + ".json")
+            .then(r => r.json())
+            .then(data => {
+                var el = document.getElementById("real-hits-sketch");
+                if (el && data && data.count) {
+                    el.innerText = data.count;
+                }
+            }).catch(() => {});
+    </script>
+
 </body>
 </html>
